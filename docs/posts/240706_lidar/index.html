@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="김진원">
 <meta name="dcterms.date" content="2024-07-06">
 
-<title>LiDAR 하드웨어 개요 – mqjinwon’s blog</title>
+<title>LiDAR 하드웨어 개요 – jwkim.log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d12612528911564098fe632c7d275084.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,15 +102,15 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">mqjinwon’s blog</span>
+    <span class="navbar-title">jwkim.log</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -118,18 +118,15 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/mqjinwon"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -141,144 +138,111 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">LiDAR 하드웨어 개요</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">lidar</div>
-                <div class="quarto-category">sensor</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>김진원 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">July 6, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#라이다-개요" id="toc-라이다-개요" class="nav-link active" data-scroll-target="#라이다-개요">라이다 개요</a></li>
-  <li><a href="#고려해야하는-사항-spec" id="toc-고려해야하는-사항-spec" class="nav-link" data-scroll-target="#고려해야하는-사항-spec">고려해야하는 사항 (Spec)</a></li>
-  <li><a href="#라이다의-타입" id="toc-라이다의-타입" class="nav-link" data-scroll-target="#라이다의-타입">라이다의 타입</a>
-  <ul class="collapse">
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
-  <li><a href="#image-credit" id="toc-image-credit" class="nav-link" data-scroll-target="#image-credit">Image credit</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LiDAR 하드웨어 개요</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">lidar</div>
+    <div class="quarto-category">sensor</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김진원 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 6, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<p>라이다의 종류에 대해서 알아보자</p>
+</header>
+
+
 <section id="라이다-개요" class="level2">
 <h2 class="anchored" data-anchor-id="라이다-개요">라이다 개요</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/image-20240706125128213.png" class="img-fluid figure-img"></p>
-<figcaption>image-20240706125128213</figcaption>
+<figcaption>라이다 구성 요소</figcaption>
 </figure>
 </div>
-<p>라이다는 기본적으로 Laser, Recevier, Processor로 구성되어 있다.</p>
+<p>라이다는 기본적으로 Laser, Receiver, Processor로 구성되어 있다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/image-20240706125215236.png" class="img-fluid figure-img"></p>
-<figcaption>image-20240706125215236</figcaption>
+<figcaption>TOF 원리</figcaption>
 </figure>
 </div>
-<p>Laser에서 빛을 쏘고, 이 빛이 장애물에 반사가 되면, Receiver가 빛을 받는다. 이때 거리를 측정하기 위해, 빛의 속도와 시간을 이용한다. 이 기술을 TOF(Time of Flight) 라 부른다. <span class="math display">\[
-c = speed\ of\ light \\
-d = t*c/2
+<p>Laser에서 빛을 쏘고, 장애물에 반사된 빛을 Receiver가 수신한다. 이때 빛의 속도와 왕복 시간을 이용해 거리를 계산하는데, 이 기술을 <strong>TOF(Time of Flight)</strong>라 부른다.</p>
+<p><span class="math display">\[
+d = \frac{t \times c}{2}
 \]</span></p>
+<p>(<span class="math inline">\(c\)</span>: 빛의 속도, <span class="math inline">\(t\)</span>: 왕복 시간)</p>
 </section>
-<section id="고려해야하는-사항-spec" class="level2">
-<h2 class="anchored" data-anchor-id="고려해야하는-사항-spec">고려해야하는 사항 (Spec)</h2>
-<p><strong>1. FOV (Field of View)</strong></p>
+<section id="주요-스펙" class="level2">
+<h2 class="anchored" data-anchor-id="주요-스펙">주요 스펙</h2>
+<p><strong>FOV (Field of View)</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/image-20240706130703528.png" class="img-fluid figure-img"></p>
-<figcaption>image-20240706130703528</figcaption>
+<figcaption>FOV 예시</figcaption>
 </figure>
 </div>
-<ul>
-<li>어느정도의 영역을 커버할 수 있는 가를 말함</li>
-</ul>
-<p><strong>2. Range</strong></p>
-<p><strong>3. Resolution</strong></p>
-<p><strong>4. accuary</strong></p>
+<p>센서가 커버할 수 있는 각도 범위. 수평/수직 FOV 모두 중요하다.</p>
+<p><strong>Range</strong> — 최대 측정 가능 거리</p>
+<p><strong>Resolution</strong> — 거리 분해능 (포인트 간 최소 간격)</p>
+<p><strong>Accuracy</strong> — 측정값의 오차 범위</p>
 </section>
-<section id="라이다의-타입" class="level2">
-<h2 class="anchored" data-anchor-id="라이다의-타입">라이다의 타입</h2>
-<p>3D 라이다는 다양한 타입의 모델이 존재한다.</p>
-<ol type="1">
-<li><p>Spinning type</p>
+<section id="라이다의-종류" class="level2">
+<h2 class="anchored" data-anchor-id="라이다의-종류">라이다의 종류</h2>
+<section id="spinning-type" class="level3">
+<h3 class="anchored" data-anchor-id="spinning-type">1. Spinning Type</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/image-20240706130805126.png" class="img-fluid figure-img"></p>
-<figcaption>image-20240706130805126</figcaption>
+<figcaption>Spinning LiDAR</figcaption>
 </figure>
 </div>
-<ul>
-<li><p>위 그림과 같이 센서들이 수직으로 배열되어 있으며, 모터가 센서를 회전시켜가면서 값을 취득하는 방법이다.</p></li>
-<li><p>이는 수직으로 배열된 레이저 모듈이기에 거리가 증가함에 따라 point의 밀도는 점차적으로 줄어든다.</p></li>
-<li><p>detection range와 resolution을 증가시키기 위한 한가지 방법은 transmit-receive 모듈을 추가하는 것이다.</p></li>
-<li><p>센서의 수가 늘어날수록, calibration을 하기가 힘들어져 비용이 기하급수적으로 증가한다.</p></li>
-</ul></li>
-<li><p>Hybrid solid-state LiDAR</p>
+<p>수직으로 배열된 레이저 모듈을 모터로 회전시켜 3D 포인트클라우드를 취득하는 방식이다. 거리가 멀어질수록 포인트 밀도가 낮아지며, 채널 수를 늘릴수록 캘리브레이션 비용이 기하급수적으로 증가한다.</p>
+</section>
+<section id="hybrid-solid-state" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-solid-state">2. Hybrid Solid-State</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/Peek 2024-07-06 13-15.gif" class="img-fluid figure-img"></p>
-<figcaption>Peek 2024-07-06 13-15</figcaption>
+<figcaption>Hybrid Solid-State LiDAR</figcaption>
 </figure>
 </div>
-<ul>
-<li>제한된 각도로 회전하는 두개의 거울을 사용한다.</li>
-<li>폴리곤 거울은 회전하며 레이저가 수평으로 스캔되도록 하고, 위아래로 흔들리는 거울을 레이저 빔을 수직으로 굴절시킨다.</li>
-<li>spinning type에 비해서 매우 높은 hz가 필요하다. 즉 잘 고장날 가능성이 높다.</li>
-</ul></li>
-<li><p>MEMS module LiDAR</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://preciseley.com/wp-content/uploads/2021/10/test-product.png" class="img-fluid figure-img"></p>
-<figcaption>test-product</figcaption>
-</figure>
-</div>
-<ol type="1">
-<li>MEMS 시스템을 통해 고주파로 회전하며 레이저 빔을 반사하는 방식임.</li>
-<li>Recevier가 먼 거리의 물체를 감지하기 위해서는 충분한 빛을 받아야하기에 먼 거리의 값을 측정하기 어렵다.</li>
-<li>거울이 커질수록 고주파의 진동을 견디기 어렵다.</li>
-<li>내구성 문제가 있다.</li>
-<li>제한된 회전각도로 인해 FOV가 낮다.</li>
-</ol></li>
-<li><p>Solid-state LiDAR</p>
+<p>제한된 각도로 회전하는 두 개의 거울을 활용한다. 폴리곤 거울은 수평 스캔, 진동 거울은 수직 굴절을 담당한다. Spinning Type 대비 훨씬 높은 구동 주파수가 필요해 내구성에 취약하다.</p>
+</section>
+<section id="mems-module" class="level3">
+<h3 class="anchored" data-anchor-id="mems-module">3. MEMS Module</h3>
+<p>MEMS 시스템의 고주파 진동 거울로 레이저 빔을 반사하는 방식이다. 거울 크기에 한계가 있어 장거리 감지가 어렵고, 내구성 문제와 좁은 FOV가 단점이다.</p>
+</section>
+<section id="solid-state" class="level3">
+<h3 class="anchored" data-anchor-id="solid-state">4. Solid-State</h3>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -286,32 +250,87 @@ d = t*c/2
 </colgroup>
 <thead>
 <tr class="header">
-<th><img src="assets/image-20240706134355065.png" class="img-fluid" alt="image-20240706134355065"></th>
-<th><img src="https://www.hesaitech.com/wp-content/uploads/2023/03/image-3-1024x697.png" class="img-fluid" alt="Things you need to know about LiDAR: solid-state and hybrid solid-state, what’s the difference? HESAI"></th>
+<th style="text-align: center;"><img src="assets/image-20240706134355065.png" class="img-fluid" alt="Solid-State 칩"></th>
+<th style="text-align: center;"><img src="https://www.hesaitech.com/wp-content/uploads/2023/03/image-3-1024x697.png" class="img-fluid" alt="비교"></th>
 </tr>
 </thead>
 <tbody>
 </tbody>
 </table>
+<p>ASIC 기술로 수백 개의 레이저 모듈을 단일 칩에 통합한 방식이다. 높은 거리 분해능과 정확도를 제공하며, 제조 단순화로 일관성이 높다.</p>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
 <ul>
-<li>ASIC 기술을 통해 수백개의 레이저 모듈을 단일 칩에 통합시켜 만든 LiDAR이다.</li>
-<li>이는 뛰어난 거리 측정 해상도와 정확성을 제공하며, 단순화된 제조를 통해 효율성과 일관성을 높인다.</li>
-</ul></li>
-</ol>
-<section id="reference" class="level3">
-<h3 class="anchored" data-anchor-id="reference">Reference</h3>
-<p>https://www.youtube.com/watch?v=3EehCU3csJQ&amp;t=18s</p>
-</section>
-<section id="image-credit" class="level3">
-<h3 class="anchored" data-anchor-id="image-credit">Image credit</h3>
-<p><a href="https://preciseley.com/product/mems-scanning-mirror/">https://preciseley.com/product/mems-scanning-mirror/</a></p>
-<p><a href="https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/">https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/</a></p>
+<li><a href="https://www.youtube.com/watch?v=3EehCU3csJQ&amp;t=18s">YouTube - LiDAR 개요</a></li>
+<li><a href="https://preciseley.com/product/mems-scanning-mirror/">Preciseley - MEMS Scanning Mirror</a></li>
+<li><a href="https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/">Hesai - Solid-state vs Hybrid Solid-state</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
+<script>
+// Fix Quarto 1.6 category filter bug:
+// data-categories is base64(urlencoded joined string), not comma-separated base64 values.
+(function () {
+  function fixCategoryFilter(categoryB64) {
+    const categoryName = categoryB64 ? atob(categoryB64) : "";
+
+    const listingIds = Object.keys(window["quarto-listings"] || {});
+    for (const listingId of listingIds) {
+      const list = window["quarto-listings"][listingId];
+      if (!list) continue;
+
+      if (!categoryName) {
+        list.filter();
+      } else {
+        list.filter(function (item) {
+          const vals = item.values();
+          if (vals.categories != null) {
+            const decoded = decodeURIComponent(atob(vals.categories));
+            return decoded.split(",").includes(categoryName);
+          }
+          return false;
+        });
+      }
+    }
+
+    // Update active state on filter buttons
+    document.querySelectorAll(".quarto-listing-category .category.active")
+      .forEach(el => el.classList.remove("active"));
+    const target = document.querySelector(
+      `.quarto-listing-category .category[data-category='${categoryB64}']`
+    );
+    if (target) target.classList.add("active");
+
+    // Update URL hash
+    const hash = categoryB64 ? "category=" + categoryB64 : "";
+    window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
+  }
+
+  window.addEventListener("load", function () {
+    window.quartoListingCategory = fixCategoryFilter;
+
+    document.querySelectorAll(".quarto-listing-category .category").forEach(function(el) {
+      var cat = el.getAttribute("data-category");
+      el.onclick = function() { fixCategoryFilter(cat); };
+    });
+
+    document.querySelectorAll(".quarto-listing-category-title").forEach(function(el) {
+      el.onclick = function() { fixCategoryFilter(""); };
+    });
+
+    var hash = window.location.hash.slice(1);
+    if (hash && hash.indexOf("category=") === 0) {
+      var cat = hash.replace("category=", "");
+      if (cat) fixCategoryFilter(cat);
+    }
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -394,8 +413,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -506,7 +523,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -733,6 +749,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Jinwon Kim</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mqjinwon">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/robotics-jinwon">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/@robotminsu">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

@@ -3,18 +3,32 @@ project:
   output-dir: docs
 
 website:
-  title: "mqjinwon's blog"
+  title: "jwkim.log"
   navbar:
+    left:
+      - href: index.qmd
+        text: Home
     right:
-      - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/mqjinwon
+
+  page-footer:
+    left: "© 2026 Jinwon Kim"
+    right:
+      - icon: github
+        href: https://github.com/mqjinwon
+      - icon: linkedin
+        href: https://linkedin.com/in/robotics-jinwon
+      - icon: youtube
+        href: https://youtube.com/@robotminsu
+
 format:
   html:
     theme: cosmo
     css: styles.css
-
-
-
+    toc: false
+    include-after-body: listing-fix.html
+    grid:
+      body-width: 960px
+      sidebar-width: 0px
+      margin-width: 0px

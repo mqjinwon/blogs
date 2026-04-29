@@ -1,0 +1,59 @@
+<script>
+// Fix Quarto 1.6 category filter bug:
+// data-categories is base64(urlencoded joined string), not comma-separated base64 values.
+(function () {
+  function fixCategoryFilter(categoryB64) {
+    const categoryName = categoryB64 ? atob(categoryB64) : "";
+
+    const listingIds = Object.keys(window["quarto-listings"] || {});
+    for (const listingId of listingIds) {
+      const list = window["quarto-listings"][listingId];
+      if (!list) continue;
+
+      if (!categoryName) {
+        list.filter();
+      } else {
+        list.filter(function (item) {
+          const vals = item.values();
+          if (vals.categories != null) {
+            const decoded = decodeURIComponent(atob(vals.categories));
+            return decoded.split(",").includes(categoryName);
+          }
+          return false;
+        });
+      }
+    }
+
+    // Update active state on filter buttons
+    document.querySelectorAll(".quarto-listing-category .category.active")
+      .forEach(el => el.classList.remove("active"));
+    const target = document.querySelector(
+      `.quarto-listing-category .category[data-category='${categoryB64}']`
+    );
+    if (target) target.classList.add("active");
+
+    // Update URL hash
+    const hash = categoryB64 ? "category=" + categoryB64 : "";
+    window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
+  }
+
+  window.addEventListener("load", function () {
+    window.quartoListingCategory = fixCategoryFilter;
+
+    document.querySelectorAll(".quarto-listing-category .category").forEach(function(el) {
+      var cat = el.getAttribute("data-category");
+      el.onclick = function() { fixCategoryFilter(cat); };
+    });
+
+    document.querySelectorAll(".quarto-listing-category-title").forEach(function(el) {
+      el.onclick = function() { fixCategoryFilter(""); };
+    });
+
+    var hash = window.location.hash.slice(1);
+    if (hash && hash.indexOf("category=") === 0) {
+      var cat = hash.replace("category=", "");
+      if (cat) fixCategoryFilter(cat);
+    }
+  });
+})();
+</script>

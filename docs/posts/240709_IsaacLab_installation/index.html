@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="김진원">
 <meta name="dcterms.date" content="2024-07-09">
 
-<title>IsaacLab 설치하기 – mqjinwon’s blog</title>
+<title>IsaacLab 설치하기 – jwkim.log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d12612528911564098fe632c7d275084.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,15 +107,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">mqjinwon’s blog</span>
+    <span class="navbar-title">jwkim.log</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -123,18 +123,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/mqjinwon"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -146,142 +143,187 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">IsaacLab 설치하기</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">nvidia</div>
-                <div class="quarto-category">isaaclab</div>
-                <div class="quarto-category">robotics</div>
-                <div class="quarto-category">rl</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>김진원 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">July 9, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#os-사전-설치-사항" id="toc-os-사전-설치-사항" class="nav-link active" data-scroll-target="#os-사전-설치-사항">OS &amp; 사전 설치 사항</a>
-  <ul class="collapse">
-  <li><a href="#추가적으로-설치할-패키지" id="toc-추가적으로-설치할-패키지" class="nav-link" data-scroll-target="#추가적으로-설치할-패키지">추가적으로 설치할 패키지</a></li>
-  </ul></li>
-  <li><a href="#isaaclab-설치하기" id="toc-isaaclab-설치하기" class="nav-link" data-scroll-target="#isaaclab-설치하기">IsaacLab 설치하기</a>
-  <ul class="collapse">
-  <li><a href="#isaacsim-symbolic-link-만들기" id="toc-isaacsim-symbolic-link-만들기" class="nav-link" data-scroll-target="#isaacsim-symbolic-link-만들기">IsaacSim symbolic link 만들기</a></li>
-  <li><a href="#conda-환경-만들기-optional" id="toc-conda-환경-만들기-optional" class="nav-link" data-scroll-target="#conda-환경-만들기-optional">Conda 환경 만들기 (optional)</a></li>
-  <li><a href="#isaaclab-설치하기-1" id="toc-isaaclab-설치하기-1" class="nav-link" data-scroll-target="#isaaclab-설치하기-1">IsaacLab 설치하기</a></li>
-  </ul></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IsaacLab 설치하기</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">nvidia</div>
+    <div class="quarto-category">isaaclab</div>
+    <div class="quarto-category">robotics</div>
+    <div class="quarto-category">rl</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김진원 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 9, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<p>IssacLab 설치하기</p>
-<hr>
-<section id="os-사전-설치-사항" class="level2">
-<h2 class="anchored" data-anchor-id="os-사전-설치-사항">OS &amp; 사전 설치 사항</h2>
+</header>
+
+
+<section id="사전-요구사항" class="level2">
+<h2 class="anchored" data-anchor-id="사전-요구사항">사전 요구사항</h2>
 <ul>
 <li>Ubuntu 22.04</li>
-<li><a href="https://docs.ros.org/en/humble/Installation.html">ROS 2 humble</a></li>
+<li><a href="https://docs.ros.org/en/humble/Installation.html">ROS 2 Humble</a></li>
 <li>Isaac Sim 4.0 이상</li>
-<li><a href="https://docs.anaconda.com/miniconda/">miniconda</a> or <a href="https://www.anaconda.com/">anaconda</a></li>
+<li><a href="https://docs.anaconda.com/miniconda/">Miniconda</a> 또는 <a href="https://www.anaconda.com/">Anaconda</a></li>
 </ul>
-<section id="추가적으로-설치할-패키지" class="level3">
-<h3 class="anchored" data-anchor-id="추가적으로-설치할-패키지">추가적으로 설치할 패키지</h3>
-<pre><code>sudo apt install cmake build-essential</code></pre>
+<p>추가 패키지:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install cmake build-essential</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="설치-절차" class="level2">
+<h2 class="anchored" data-anchor-id="설치-절차">설치 절차</h2>
+<section id="저장소-클론" class="level3">
+<h3 class="anchored" data-anchor-id="저장소-클론">1. 저장소 클론</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:isaac-sim/IsaacLab.git</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> IsaacLab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>isaaclab.sh</code>로 대부분의 작업을 수행할 수 있다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>usage: isaaclab.sh [-h] [-i] [-f] [-p] [-s] [-t] [-o] [-v] [-d] [-c]
+
+optional arguments:
+   -h, --help           Display the help content.
+   -i, --install [LIB]  Install extensions and learning frameworks (rl-games, rsl-rl, sb3, skrl). Default: 'all'.
+   -f, --format         Run pre-commit to format code and check lints.
+   -p, --python         Run the python executable from Isaac Sim or virtual env.
+   -s, --sim            Run the simulator executable (isaac-sim.sh).
+   -t, --test           Run all python unittest tests.
+   -o, --docker         Run the docker container helper script.
+   -v, --vscode         Generate VSCode settings from template.
+   -d, --docs           Build documentation using sphinx.
+   -c, --conda [NAME]   Create the conda environment. Default name: 'isaaclab'.</code></pre>
 </section>
-<section id="isaaclab-설치하기" class="level2">
-<h2 class="anchored" data-anchor-id="isaaclab-설치하기">IsaacLab 설치하기</h2>
-<p>먼저 isaaclab 설치 파일을 github에서 다운 받는다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:isaac-sim/IsaacLab.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>isaaclab.sh를 사용해서 다양한 명령어를 수행할 수 있다.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--help</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">usage:</span> isaaclab.sh <span class="pp">[-</span><span class="ss">h</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">i</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">f</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">p</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">s</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">t</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">o</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">v</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">d</span><span class="pp">]</span> <span class="pp">[-</span><span class="ss">c</span><span class="pp">]</span> <span class="at">--</span> Utility to manage Isaac Lab.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">optional</span> arguments:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-h,</span> <span class="at">--help</span>           Display the help content.</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-i,</span> <span class="at">--install</span> <span class="pp">[</span><span class="ss">LIB</span><span class="pp">]</span>  Install the extensions inside Isaac Lab and learning frameworks <span class="er">(</span><span class="ex">rl-games,</span> rsl-rl, sb3, skrl<span class="kw">)</span> <span class="fu">as</span> extra dependencies. Default is <span class="st">'all'</span>.</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-f,</span> <span class="at">--format</span>         Run pre-commit to format the code and check lints.</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-p,</span> <span class="at">--python</span>         Run the python executable provided by Isaac Sim or virtual environment <span class="er">(</span><span class="cf">if</span> <span class="ex">active</span><span class="kw">)</span><span class="bu">.</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-s,</span> <span class="at">--sim</span>            Run the simulator executable <span class="er">(</span><span class="ex">isaac-sim.sh</span><span class="kw">)</span> <span class="ex">provided</span> by Isaac Sim.</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-t,</span> <span class="at">--test</span>           Run all python unittest tests.</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-o,</span> <span class="at">--docker</span>         Run the docker container helper script <span class="er">(</span><span class="ex">docker/container.sh</span><span class="kw">)</span><span class="bu">.</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-v,</span> <span class="at">--vscode</span>         Generate the VSCode settings file from template.</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-d,</span> <span class="at">--docs</span>           Build the documentation from source using sphinx.</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>   <span class="ex">-c,</span> <span class="at">--conda</span> <span class="pp">[</span><span class="ss">NAME</span><span class="pp">]</span>   Create the conda environment for Isaac Lab. Default name is <span class="st">'isaaclab'</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="isaacsim-symbolic-link-만들기" class="level3">
-<h3 class="anchored" data-anchor-id="isaacsim-symbolic-link-만들기">IsaacSim symbolic link 만들기</h3>
-<p>설치된 Isaac Lab 디렉터리에 설치된 IsaacSim을 연결해주는 <code>_isaac_sim</code> 심볼릭 링크를 설정한다. 이렇게 하면 Isaac Sim에 있는 파이썬 모듈과 확장 프로그램을 쉽게 찾을 수 있다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enter the cloned repository</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> IsaacLab</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a symbolic link</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> path_to_isaac_sim _isaac_sim</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For example: ln -s /home/nvidia/.local/share/ov/pkg/isaac-sim-4.0.0 _isaac_sim</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="isaac-sim-심볼릭-링크-설정" class="level3">
+<h3 class="anchored" data-anchor-id="isaac-sim-심볼릭-링크-설정">2. Isaac Sim 심볼릭 링크 설정</h3>
+<p>설치된 Isaac Sim 경로를 <code>_isaac_sim</code>으로 연결한다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> path_to_isaac_sim _isaac_sim</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 예시: ln -s /home/nvidia/.local/share/ov/pkg/isaac-sim-4.0.0 _isaac_sim</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="conda-환경-만들기-optional" class="level3">
-<h3 class="anchored" data-anchor-id="conda-환경-만들기-optional">Conda 환경 만들기 (optional)</h3>
-<p>기본적으로 가상환경을 사용하기를 권장한다. 이를 설정하기 위해서는 아래의 명령어를 사용하면 된다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: Default name for conda environment is 'isaaclab'</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--conda</span>  <span class="co"># or "./isaaclab.sh -c"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: Custom name for conda environment</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--conda</span> my_env  <span class="co"># or "./isaaclab.sh -c my_env"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>환경을 활성화 하기 위해서는 <code>conda activate</code>를 활용한다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate isaaclab  <span class="co"># or "conda activate my_env"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>만약 로컬에서 진행하고 싶다면 아래와 같이 설치를 하면 된다. <strong>(권장하지 않음)</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">-p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="conda-환경-생성-권장" class="level3">
+<h3 class="anchored" data-anchor-id="conda-환경-생성-권장">3. Conda 환경 생성 (권장)</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 기본 이름 'isaaclab'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--conda</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 이름 지정</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--conda</span> my_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate isaaclab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="isaaclab-설치하기-1" class="level3">
-<h3 class="anchored" data-anchor-id="isaaclab-설치하기-1">IsaacLab 설치하기</h3>
-<p>이제 설치명령어만 남았다. <strong>이때, 주의할 것은 conda 환경에 진입한 채로 설치해야한다는 것이다!</strong> 아래 명령을 통해 IsaacLab을 설치할 수 있다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--install</span> <span class="co"># or "./isaaclab.sh -i"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>위와 같이 설치할 경우 모든 학습 framework를 다 다운 받는다. 만약 일부의 프레임워크만 사용하고 싶다면 (e.g.&nbsp;rl_games) 인자로 필요한 라이브러리를 작성해주면 된다.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--install</span> rl_games  <span class="co"># or "./isaaclab.sh -i rl_games"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>유효한 인자는 <code>rl_games</code>, <code>rsl_rl</code>, <code>sb3</code>, <code>skrl</code>, <code>robomimic</code>, <code>none</code>이 있다.</p>
+<section id="isaaclab-설치" class="level3">
+<h3 class="anchored" data-anchor-id="isaaclab-설치">4. IsaacLab 설치</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>반드시 conda 환경에 진입한 상태에서 설치해야 한다.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>특정 프레임워크만 설치하려면 인자를 지정한다. 유효한 값: <code>rl_games</code>, <code>rsl_rl</code>, <code>sb3</code>, <code>skrl</code>, <code>robomimic</code>, <code>none</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./isaaclab.sh</span> <span class="at">--install</span> rl_games</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="reference" class="level2">
 <h2 class="anchored" data-anchor-id="reference">Reference</h2>
-<p><a href="https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html">https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html</a></p>
+<ul>
+<li><a href="https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html">IsaacLab 공식 설치 가이드</a></li>
+</ul>
 
 
 </section>
 
 </main> <!-- /main -->
+<script>
+// Fix Quarto 1.6 category filter bug:
+// data-categories is base64(urlencoded joined string), not comma-separated base64 values.
+(function () {
+  function fixCategoryFilter(categoryB64) {
+    const categoryName = categoryB64 ? atob(categoryB64) : "";
+
+    const listingIds = Object.keys(window["quarto-listings"] || {});
+    for (const listingId of listingIds) {
+      const list = window["quarto-listings"][listingId];
+      if (!list) continue;
+
+      if (!categoryName) {
+        list.filter();
+      } else {
+        list.filter(function (item) {
+          const vals = item.values();
+          if (vals.categories != null) {
+            const decoded = decodeURIComponent(atob(vals.categories));
+            return decoded.split(",").includes(categoryName);
+          }
+          return false;
+        });
+      }
+    }
+
+    // Update active state on filter buttons
+    document.querySelectorAll(".quarto-listing-category .category.active")
+      .forEach(el => el.classList.remove("active"));
+    const target = document.querySelector(
+      `.quarto-listing-category .category[data-category='${categoryB64}']`
+    );
+    if (target) target.classList.add("active");
+
+    // Update URL hash
+    const hash = categoryB64 ? "category=" + categoryB64 : "";
+    window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
+  }
+
+  window.addEventListener("load", function () {
+    window.quartoListingCategory = fixCategoryFilter;
+
+    document.querySelectorAll(".quarto-listing-category .category").forEach(function(el) {
+      var cat = el.getAttribute("data-category");
+      el.onclick = function() { fixCategoryFilter(cat); };
+    });
+
+    document.querySelectorAll(".quarto-listing-category-title").forEach(function(el) {
+      el.onclick = function() { fixCategoryFilter(""); };
+    });
+
+    var hash = window.location.hash.slice(1);
+    if (hash && hash.indexOf("category=") === 0) {
+      var cat = hash.replace("category=", "");
+      if (cat) fixCategoryFilter(cat);
+    }
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -364,8 +406,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -476,7 +516,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -703,6 +742,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Jinwon Kim</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mqjinwon">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/robotics-jinwon">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/@robotminsu">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

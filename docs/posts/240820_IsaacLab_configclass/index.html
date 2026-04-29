@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="김진원">
 <meta name="dcterms.date" content="2024-08-20">
 
-<title>IsaacLab의 configclass decorator 역할 – mqjinwon’s blog</title>
+<title>IsaacLab의 configclass decorator 역할 – jwkim.log</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d12612528911564098fe632c7d275084.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,15 +107,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">mqjinwon’s blog</span>
+    <span class="navbar-title">jwkim.log</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -123,18 +123,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/mqjinwon"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -146,121 +143,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">IsaacLab의 configclass decorator 역할</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">nvidia</div>
-                <div class="quarto-category">isaaclab</div>
-                <div class="quarto-category">robotics</div>
-                <div class="quarto-category">rl</div>
-                <div class="quarto-category">python</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>김진원 </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">August 20, 2024</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">✂️TL;DR</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">🏁Introduction</a></li>
-  <li><a href="#decorator란" id="toc-decorator란" class="nav-link" data-scroll-target="#decorator란">🌸Decorator란?</a></li>
-  <li><a href="#dataclass-기능" id="toc-dataclass-기능" class="nav-link" data-scroll-target="#dataclass-기능">💽Dataclass 기능</a></li>
-  <li><a href="#configclass-분석" id="toc-configclass-분석" class="nav-link" data-scroll-target="#configclass-분석">💾configclass 분석</a></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">📖Reference</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IsaacLab의 configclass decorator 역할</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">nvidia</div>
+    <div class="quarto-category">isaaclab</div>
+    <div class="quarto-category">robotics</div>
+    <div class="quarto-category">rl</div>
+    <div class="quarto-category">python</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>김진원 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 20, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
-<p>configclass vs.&nbsp;dataclass 비교하기</p>
-<hr>
-<section id="tldr" class="level1">
-<h1>✂️TL;DR</h1>
-<p>configclass를 사용하면…</p>
+</header>
+
+
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<p><code>@configclass</code>는 Python <code>@dataclass</code>의 부족한 부분을 채워주는 IsaacLab의 decorator다.</p>
 <ul>
-<li><strong>dataclass</strong>의 부족한 부분을 채워준 decorator</li>
-<li><strong>Type annotation</strong>과 <strong>Mutable default</strong> 을 자동으로 처리하므로 사용하기 간단함</li>
-<li><strong>Class instance</strong>와 <strong>dictionary</strong> 간의 쉬운 변환을 위한 유틸리티 메소드 제공</li>
+<li>타입 annotation 없이도 필드 선언 가능</li>
+<li>mutable default 값을 <code>field(default_factory=...)</code> 없이 자동 처리</li>
+<li><code>to_dict</code>, <code>from_dict</code>, <code>copy</code>, <code>replace</code> 등 유틸리티 메서드 자동 추가</li>
 </ul>
+<hr>
+</section>
 <section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">🏁Introduction</h2>
-<p>본 포스팅에서는 python에서 기본적으로 제공하는 <code>@dataclass</code>와 IsaacLab에서 사용하는 <code>@configclass</code> 간의 차이점을 소개한다.</p>
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>IsaacLab의 <a href="https://github.com/isaac-sim/IsaacLabExtensionTemplate">IsaacLabExtensionTemplate</a>을 분석하다가 <code>@configclass</code> decorator를 발견했다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/image-20240820212004490.png" class="img-fluid figure-img"></p>
-<figcaption>image-20240820212004490</figcaption>
+<figcaption>configclass 사용 예시</figcaption>
 </figure>
 </div>
-<p>본 포스팅을 진행하는 이유는 IsaacLab extension 프로젝트인 <a href="https://github.com/isaac-sim/IsaacLabExtensionTemplate">IsaacLabExtensionTemplate</a> 에서 사용하는 코드 중 위 이미지와 같이 configclass decorator를 발견했는데, 어떠한 용도로 사용되는 지 궁금해서였다. 그래서 설명을 찾아보니 dataclass decorator를 좀 더 확장성 있게 만든 것이라고 설명을 하기에 두가지의 decorator를 비교해보고자 한다.</p>
+<p><code>@dataclass</code>를 확장한 것이라는 설명을 보고, 두 decorator를 직접 비교해보기로 했다.</p>
+<hr>
 </section>
 <section id="decorator란" class="level2">
-<h2 class="anchored" data-anchor-id="decorator란">🌸Decorator란?</h2>
-<p>우선 Decorator가 뭔지 모를 수도 있으니 간단히 설명하고 넘어가도록 하겠다.</p>
-<blockquote class="blockquote">
-<p>[!NOTE]</p>
-<p>어떤 함수를 받아 특정 역할을 수행하고 이를 다시 함수의 형태로 반환하는 함수</p>
-</blockquote>
-<p>Python Decorator 다른 함수를 입력으로 사용하고 명시적으로 수정하지 않고 해당 동작을 확장하거나 변경하는 함수다. Decorator는 일반적으로 깔끔하고 읽기 쉬운 방식으로 함수나 메서드에 기능을 추가하는 데 사용한다.</p>
-<p><strong>Decorator template</strong></p>
-<div id="278265ad" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_decorator(func):</span>
+<h2 class="anchored" data-anchor-id="decorator란">Decorator란?</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>어떤 함수를 받아 특정 역할을 수행하고, 이를 다시 함수의 형태로 반환하는 함수</p>
+</div>
+</div>
+<p>Python decorator는 다른 함수를 입력으로 받아, 원래 코드를 수정하지 않고 동작을 확장하거나 변경한다.</p>
+<p><strong>기본 구조</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_decorator(func):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Code to execute before the function call</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 함수 호출 전 처리</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Code to execute after the function call</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 함수 호출 후 처리</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">@my_decorator</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function():</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>위와 같이 my_decorator 를 만들면, 이후의 다른 함수에서 <span class="citation" data-cites="my_decorator를">@my_decorator를</span> 붙여서 사용할 수 있다.</p>
-<p><strong>Example - logging</strong></p>
-<div id="66b4031c" class="cell" data-execution_count="2">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_decorator(func):</span>
+<p><strong>예시 — 로깅 decorator</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_decorator(func):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Calling function </span><span class="sc">{</span>func<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Calling </span><span class="sc">{</span>func<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>func<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss"> returned </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
@@ -270,318 +251,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b):</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>add(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Calling function add
-add returned 7</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>7</code></pre>
-</div>
-</div>
-<p>위 실험결과로 알 수 있 듯, add 함수를 호출하면 function이 decorator 함수로 들어가서 내부 기능을 수행한 후에 결과값을 뱉어낸다.</p>
-<p><strong>Example - Timing Decorator</strong></p>
-<div id="309fce68" class="cell" data-execution_count="3">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timing_decorator(func):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        start_time <span class="op">=</span> time.time()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        end_time <span class="op">=</span> time.time()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>func<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss"> took </span><span class="sc">{</span>end_time <span class="op">-</span> start_time<span class="sc">}</span><span class="ss"> seconds"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">@timing_decorator</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_square(n):</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> n</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>compute_square(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>compute_square took 7.152557373046875e-07 seconds</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>100</code></pre>
-</div>
-</div>
-<p>위와 같이 시간 측정 시에도 사용할 수 있다.</p>
-<p><strong>Keypoints</strong></p>
-<ul>
-<li><p><strong>Decorators</strong>: 실제 코드를 변경하지 않고 기능을 수정하거나 향상시킨다.</p></li>
-<li><p><strong><code>@</code> syntax</strong>: <code>@decorator_name</code> 문법은 Decorator를 사용하기 위한 방법이다.</p></li>
-</ul>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>add(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling add</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># add returned 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>예시 — 실행 시간 측정</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timing_decorator(func):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> time.time()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> func(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>func<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss"> took </span><span class="sc">{</span>time<span class="sc">.</span>time() <span class="op">-</span> start<span class="sc">:.4f}</span><span class="ss">s"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">@timing_decorator</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_square(n):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> n</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>compute_square(<span class="dv">10</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># compute_square took 0.0000s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
 <section id="dataclass-기능" class="level2">
-<h2 class="anchored" data-anchor-id="dataclass-기능">💽Dataclass 기능</h2>
-<p>Python의 dataclass는 dataclasses 모듈(Python 3.7에서 도입됨)이 제공하는 데코레이터이자 유틸리티로, <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code> 등과 같은 특수 메서드를 자동으로 생성한다. 주로 데이터를 저장하고 상용구 코드를 줄이는 데 사용되는 클래스 생성을 단순화하도록 설계되었다.</p>
-<p><code>@dataclass</code>로 클래스를 장식하면 Python은 자동으로 다음 메서드를 생성한다.</p>
-<ul>
-<li><code>__init__</code>: 매개변수를 기반으로 속성을 설정하는 초기화 방법.</li>
-<li><code>__repr__</code>: 읽을 수 있는 문자열 출력을 제공하는 문자열 표현 방법.</li>
-<li><code>__eq__</code>: 속성을 기준으로 인스턴스를 비교하는 동등 방법.</li>
-<li><code>__hash__</code>: 객체를 hashable 하게 만드는 해시 방법(선택 사항, frozen 설정에 따라 다름).</li>
-<li><code>__post_init__</code>: 추가 초기화를 위해 정의할 수 있는 선택적 메소드.</li>
-</ul>
-<div id="9f890194" class="cell" data-execution_count="4">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person:</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    age: <span class="bu">int</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    job: <span class="bu">str</span> <span class="op">=</span> <span class="st">"Unknown"</span>  <span class="co"># Default value for job</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an instance</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> Person(name<span class="op">=</span><span class="st">"Alice"</span>, age<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing attributes</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p.name)  <span class="co"># Output: Alice</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p.age)   <span class="co"># Output: 30</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p.job)   <span class="co"># Output: Unknown</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatic __repr__ method</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p)  <span class="co"># Output: Person(name='Alice', age=30, job='Unknown')</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatic __eq__ method</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> Person(name<span class="op">=</span><span class="st">"Alice"</span>, age<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p <span class="op">==</span> p2)  <span class="co"># Output: True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Alice
-30
-Unknown
-Person(name='Alice', age=30, job='Unknown')
-True</code></pre>
-</div>
-</div>
-<p>위 예시와 같이 dataclass를 사용하면 아래와 같은 이점들을 얻을 수 있다.</p>
+<h2 class="anchored" data-anchor-id="dataclass-기능"><span class="citation" data-cites="dataclass">@dataclass</span> 기능</h2>
+<p>Python 3.7에서 도입된 <code>@dataclass</code>는 <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code> 등의 메서드를 자동으로 생성해 보일러플레이트 코드를 줄여준다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    age: <span class="bu">int</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    job: <span class="bu">str</span> <span class="op">=</span> <span class="st">"Unknown"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> Person(name<span class="op">=</span><span class="st">"Alice"</span>, age<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p)       <span class="co"># Person(name='Alice', age=30, job='Unknown')</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p <span class="op">==</span> Person(name<span class="op">=</span><span class="st">"Alice"</span>, age<span class="op">=</span><span class="dv">30</span>))  <span class="co"># True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>order=True</code>, <code>frozen=True</code> 옵션으로 정렬 비교와 불변성도 지원한다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(order<span class="op">=</span><span class="va">True</span>, frozen<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Product:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    quantity: <span class="bu">int</span> <span class="op">=</span> field(default<span class="op">=</span><span class="dv">0</span>, compare<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> Product(name<span class="op">=</span><span class="st">"Laptop"</span>, price<span class="op">=</span><span class="fl">999.99</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> Product(name<span class="op">=</span><span class="st">"Tablet"</span>, price<span class="op">=</span><span class="fl">499.99</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p1 <span class="op">&gt;</span> p2)  <span class="co"># True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>dataclass의 한계</strong></p>
 <ol type="1">
-<li><p>Boilerplate 최소화</p>
-<p><span class="citation" data-cites="dataclass">@dataclass</span> 데코레이터는 <code>__init__</code>, <code>__repr__</code> 및 <code>__eq__</code>와 같은 메서드를 자동으로 생성하여 반복적인 코드를 작성하지 않아도 됨.</p></li>
-<li><p>Type Annotation</p>
-<p>dataclass는 Python의 type hint를 사용한다. 단 각 필드에는 ype annotation이 있어야 한다.</p></li>
-<li><p>Default Value</p>
-<p>일반 클래스 속성과 마찬가지로 필드에 기본값을 제공할 수 있다.</p></li>
-<li><p>Immutability</p>
-<p>데코레이터에서 <code>frozen=True</code>를 설정하면 데이터 클래스를 불변으로 만들 수 있다. 즉, 생성 후에 해당 속성을 수정할 수 없다.</p></li>
-<li><p>Automatic Ordering</p>
-<p>데코레이터에서 <code>order=True</code>를 설정하면 필드 순서에 따라 비교 방법(<code>__lt__</code>, <code>__le__</code>, <code>__gt__</code>, <code>__ge__</code>)을 자동으로 생성할 수 있습니다.</p></li>
+<li>모든 필드에 타입 annotation이 필수</li>
+<li>mutable 기본값(list, dict 등) 사용 시 <code>field(default_factory=...)</code>를 명시적으로 써야 함</li>
 </ol>
-<div id="d93a7c41" class="cell" data-execution_count="5">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(order<span class="op">=</span><span class="va">True</span>, frozen<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Product:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span> <span class="op">=</span> field(compare<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    quantity: <span class="bu">int</span> <span class="op">=</span> field(default<span class="op">=</span><span class="dv">0</span>, compare<span class="op">=</span><span class="va">False</span>)  <span class="co"># Exclude from ordering</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating an instance</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> Product(name<span class="op">=</span><span class="st">"Laptop"</span>, price<span class="op">=</span><span class="fl">999.99</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> Product(name<span class="op">=</span><span class="st">"Tablet"</span>, price<span class="op">=</span><span class="fl">499.99</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparing products (by price since quantity is excluded)</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p1 <span class="op">&gt;</span> p2)  <span class="co"># Output: True</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># p1.name = "wrong"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>True</code></pre>
-</div>
-</div>
+<hr>
 </section>
 <section id="configclass-분석" class="level2">
-<h2 class="anchored" data-anchor-id="configclass-분석">💾configclass 분석</h2>
-<div id="1e696c28" class="cell" data-execution_count="6">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> __dataclass_transform__():</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Add annotations decorator for PyLance."""</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">lambda</span> a: a</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">@__dataclass_transform__</span>()</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> configclass(cls, <span class="op">**</span>kwargs):</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Wrapper around `dataclass` functionality to add extra checks and utilities.</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    As of Python 3.7, the standard dataclasses have two main issues which makes them non-generic for</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    configuration use-cases. These include:</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">    1. Requiring a type annotation for all its members.</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">    2. Requiring explicit usage of :meth:`field(default_factory=...)` to reinitialize mutable variables.</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">    This function provides a decorator that wraps around Python's `dataclass`_ utility to deal with</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">    the above two issues. It also provides additional helper functions for dictionary &lt;-&gt; class</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">    conversion and easily copying class instances.</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">    Usage:</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">    .. code-block:: python</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">        from dataclasses import MISSING</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">        from omni.isaac.lab.utils.configclass import configclass</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">        @configclass</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">        class ViewerCfg:</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">            eye: list = [7.5, 7.5, 7.5]  # field missing on purpose</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">            lookat: list = field(default_factory=[0.0, 0.0, 0.0])</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co">        @configclass</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co">        class EnvCfg:</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co">            num_envs: int = MISSING</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">            episode_length: int = 2000</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">            viewer: ViewerCfg = ViewerCfg()</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">        # create configuration instance</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">        env_cfg = EnvCfg(num_envs=24)</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">        # print information as a dictionary</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">        print(env_cfg.to_dict())</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="co">        # create a copy of the configuration</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="co">        env_cfg_copy = env_cfg.copy()</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co">        # replace arbitrary fields using keyword arguments</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">        env_cfg_copy = env_cfg_copy.replace(num_envs=32)</span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="co">        cls: The class to wrap around.</span></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="co">        **kwargs: Additional arguments to pass to :func:`dataclass`.</span></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="co">        The wrapped class.</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="co">    .. _dataclass: https://docs.python.org/3/library/dataclasses.html</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add type annotations</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    _add_annotation_types(cls)</span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add field factory</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    _process_mutable_types(cls)</span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># copy mutable members</span></span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note: we check if user defined __post_init__ function exists and augment it with our own</span></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(cls, <span class="st">"__post_init__"</span>):</span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>        <span class="bu">setattr</span>(cls, <span class="st">"__post_init__"</span>, _combined_function(cls.__post_init__, _custom_post_init))</span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>        <span class="bu">setattr</span>(cls, <span class="st">"__post_init__"</span>, _custom_post_init)</span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add helper functions for dictionary conversion</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"to_dict"</span>, _class_to_dict)</span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"from_dict"</span>, _update_class_from_dict)</span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"replace"</span>, _replace_class_with_kwargs)</span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"copy"</span>, _copy_class)</span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># wrap around dataclass</span></span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    cls <span class="op">=</span> dataclass(cls, <span class="op">**</span>kwargs)</span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return wrapped class</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>설명을 그대로 해석하면 다음과 같다.</p>
-<blockquote class="blockquote">
-<p><code>dataclass</code> 함수를 래퍼로 감싸서 추가 검사 및 유틸리티를 추가한다.</p>
-<p>파이썬 3.7부터 지원을 시작한 표준 <code>dataclass</code>에는 두 가지 주요 문제가 있어서 일반적이지 않다.</p>
-<ol type="1">
-<li>모든 멤버에 대해 타입 annotation이 필요함.</li>
-<li>가변 변수를 재초기화하기 위해 <code>field(default_factory=...)</code>를 명시적으로 사용해야함.</li>
-</ol>
-<p><code>configclass</code>는 파이썬의 <code>dataclass</code> 유틸리티를 감싸는 데코레이터를 제공하여 위의 두 가지 문제를 처리한다.</p>
-<p>또한 <code>dictionary &lt;-&gt; class</code>에 대한 추가 helper 함수를 제공한다.</p>
-</blockquote>
-<p>즉, dataclass의 부족한 부분을 채워줬다고 이해하면 된다. 아래 예제를 통해 좀 더 알아보자.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">@configclass</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ViewerCfg:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    eye: <span class="bu">list</span> <span class="op">=</span> [<span class="fl">7.5</span>, <span class="fl">7.5</span>, <span class="fl">7.5</span>]  <span class="co"># field missing on purpose</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    lookat: <span class="bu">list</span> <span class="op">=</span> field(default_factory<span class="op">=</span>[<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">@configclass</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EnvCfg:</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    num_envs: <span class="bu">int</span> <span class="op">=</span> MISSING</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    episode_length: <span class="bu">int</span> <span class="op">=</span> <span class="dv">2000</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    viewer: ViewerCfg <span class="op">=</span> ViewerCfg()</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># create configuration instance</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>env_cfg <span class="op">=</span> EnvCfg(num_envs<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># print information as a dictionary</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(env_cfg.to_dict())</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># create a copy of the configuration</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>env_cfg_copy <span class="op">=</span> env_cfg.copy()</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># replace arbitrary fields using keyword arguments</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>env_cfg_copy <span class="op">=</span> env_cfg_copy.replace(num_envs<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>위와 같이 <code>to_dict</code> 함수를 제공함으로써 편리하게 dictioary화 하고, copy로 복사를 할 수 있다. 또한 replace를 통해 copy를 하면서 값을 변경할 수도 있다.</p>
-<p><code>configclass</code> 데코레이터는 구성 관리에서 발생하는 일반적인 문제를 해결하여 <code>dataclass</code> 기능을 기반으로 구축된 강력한 유틸리티이다. mutable한 기본값을 쉽게 처리하고, <code>type annotation</code>을 동적으로 제공하고, <code>replace</code> 및 <code>copy</code>와 같은 일반적인 작업을 위한 <code>utiliy method</code>를 제공하여 구성 클래스 생성을 단순화한다. <code>configclass</code> 데코레이터는 구성 객체가 유연하고 강력하며 조작하기 쉬워야 하는 애플리케이션에 특히 유용하다.</p>
-<p>요약하자면, 아래와 같이 표로 정리할 수 있다.</p>
+<h2 class="anchored" data-anchor-id="configclass-분석"><span class="citation" data-cites="configclass">@configclass</span> 분석</h2>
+<p>IsaacLab 소스코드의 <code>configclass</code> 구현을 보면 다음과 같다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> configclass(cls, <span class="op">**</span>kwargs):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 타입 annotation 자동 추가</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    _add_annotation_types(cls)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># mutable 기본값 자동 처리</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    _process_mutable_types(cls)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># __post_init__ 확장</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">hasattr</span>(cls, <span class="st">"__post_init__"</span>):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">setattr</span>(cls, <span class="st">"__post_init__"</span>, _combined_function(cls.__post_init__, _custom_post_init))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">setattr</span>(cls, <span class="st">"__post_init__"</span>, _custom_post_init)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 유틸리티 메서드 추가</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"to_dict"</span>, _class_to_dict)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"from_dict"</span>, _update_class_from_dict)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"replace"</span>, _replace_class_with_kwargs)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">setattr</span>(cls, <span class="st">"copy"</span>, _copy_class)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dataclass로 래핑</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    cls <span class="op">=</span> dataclass(cls, <span class="op">**</span>kwargs)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>사용 예시</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> MISSING</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> omni.isaac.lab.utils.configclass <span class="im">import</span> configclass</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">@configclass</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ViewerCfg:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    eye: <span class="bu">list</span> <span class="op">=</span> [<span class="fl">7.5</span>, <span class="fl">7.5</span>, <span class="fl">7.5</span>]       <span class="co"># annotation 없어도 OK</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    lookat: <span class="bu">list</span> <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]    <span class="co"># mutable default 자동 처리</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">@configclass</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> EnvCfg:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    num_envs: <span class="bu">int</span> <span class="op">=</span> MISSING</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    episode_length: <span class="bu">int</span> <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    viewer: ViewerCfg <span class="op">=</span> ViewerCfg()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>env_cfg <span class="op">=</span> EnvCfg(num_envs<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(env_cfg.to_dict())</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>env_cfg_copy <span class="op">=</span> env_cfg.copy()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>env_cfg_copy <span class="op">=</span> env_cfg_copy.replace(num_envs<span class="op">=</span><span class="dv">32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>to_dict</code> / <code>from_dict</code>로 dictionary 변환, <code>copy</code>로 깊은 복사, <code>replace</code>로 값을 바꾼 복사본 생성이 가능하다.</p>
+<hr>
+</section>
+<section id="dataclass-vs-configclass-비교" class="level2">
+<h2 class="anchored" data-anchor-id="dataclass-vs-configclass-비교">dataclass vs configclass 비교</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
 <col style="width: 33%">
-<col style="width: 48%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Feature/Aspect</th>
-<th style="text-align: center;"><code>dataclass</code></th>
-<th style="text-align: center;"><code>configclass</code></th>
+<th style="text-align: center;">Feature</th>
+<th style="text-align: center;"><code>@dataclass</code></th>
+<th style="text-align: center;"><code>@configclass</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><strong>Purpose</strong></td>
-<td style="text-align: center;">General-purpose data storage</td>
-<td style="text-align: center;">Configuration management with additional utilities</td>
+<td style="text-align: center;">목적</td>
+<td style="text-align: center;">범용 데이터 저장</td>
+<td style="text-align: center;">설정 관리 특화</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><strong>Type Annotations</strong></td>
-<td style="text-align: center;">Required for all fields</td>
-<td style="text-align: center;">Automatically handled, no need for explicit annotations</td>
+<td style="text-align: center;">타입 annotation</td>
+<td style="text-align: center;">필수</td>
+<td style="text-align: center;">자동 처리</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><strong>Mutable Defaults</strong></td>
-<td style="text-align: center;">Requires <code>field(default_factory=...)</code></td>
-<td style="text-align: center;">Automatically managed, no need for <code>default_factory</code></td>
+<td style="text-align: center;">Mutable default</td>
+<td style="text-align: center;"><code>field(default_factory=...)</code> 필요</td>
+<td style="text-align: center;">자동 처리</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><strong>Post-Initialization</strong></td>
-<td style="text-align: center;">Supports <code>__post_init__</code> for customization</td>
-<td style="text-align: center;">Augments or creates <code>__post_init__</code> for additional logic</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>Utility Methods</strong></td>
-<td style="text-align: center;">Basic methods like <code>__init__</code>, <code>__repr__</code></td>
-<td style="text-align: center;">Additional methods like <code>to_dict</code>, <code>from_dict</code>, <code>copy</code>, <code>replace</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>Customization</strong></td>
-<td style="text-align: center;">Standard dataclass features</td>
-<td style="text-align: center;">Enhanced with custom checks and processing</td>
+<td style="text-align: center;">유틸리티 메서드</td>
+<td style="text-align: center;"><code>__init__</code>, <code>__repr__</code>, <code>__eq__</code></td>
+<td style="text-align: center;">+ <code>to_dict</code>, <code>from_dict</code>, <code>copy</code>, <code>replace</code></td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
 <section id="reference" class="level2">
-<h2 class="anchored" data-anchor-id="reference">📖Reference</h2>
-<ol type="1">
-<li><a href="https://nachwon.github.io/decorator/">[Python 문법] 데코레이터 (Decorator)</a></li>
-</ol>
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://nachwon.github.io/decorator/">Python 데코레이터 (Decorator) 설명</a></li>
+<li><a href="https://github.com/isaac-sim/IsaacLab">IsaacLab configclass 소스</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
+<script>
+// Fix Quarto 1.6 category filter bug:
+// data-categories is base64(urlencoded joined string), not comma-separated base64 values.
+(function () {
+  function fixCategoryFilter(categoryB64) {
+    const categoryName = categoryB64 ? atob(categoryB64) : "";
+
+    const listingIds = Object.keys(window["quarto-listings"] || {});
+    for (const listingId of listingIds) {
+      const list = window["quarto-listings"][listingId];
+      if (!list) continue;
+
+      if (!categoryName) {
+        list.filter();
+      } else {
+        list.filter(function (item) {
+          const vals = item.values();
+          if (vals.categories != null) {
+            const decoded = decodeURIComponent(atob(vals.categories));
+            return decoded.split(",").includes(categoryName);
+          }
+          return false;
+        });
+      }
+    }
+
+    // Update active state on filter buttons
+    document.querySelectorAll(".quarto-listing-category .category.active")
+      .forEach(el => el.classList.remove("active"));
+    const target = document.querySelector(
+      `.quarto-listing-category .category[data-category='${categoryB64}']`
+    );
+    if (target) target.classList.add("active");
+
+    // Update URL hash
+    const hash = categoryB64 ? "category=" + categoryB64 : "";
+    window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
+  }
+
+  window.addEventListener("load", function () {
+    window.quartoListingCategory = fixCategoryFilter;
+
+    document.querySelectorAll(".quarto-listing-category .category").forEach(function(el) {
+      var cat = el.getAttribute("data-category");
+      el.onclick = function() { fixCategoryFilter(cat); };
+    });
+
+    document.querySelectorAll(".quarto-listing-category-title").forEach(function(el) {
+      el.onclick = function() { fixCategoryFilter(""); };
+    });
+
+    var hash = window.location.hash.slice(1);
+    if (hash && hash.indexOf("category=") === 0) {
+      var cat = hash.replace("category=", "");
+      if (cat) fixCategoryFilter(cat);
+    }
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -664,8 +542,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -776,7 +652,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1003,6 +878,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Jinwon Kim</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mqjinwon">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/robotics-jinwon">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/@robotminsu">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
