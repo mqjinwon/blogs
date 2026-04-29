@@ -1,0 +1,321 @@
+/*-- scss:defaults --*/
+
+// ── Core variables ───────────────────────────────────────────
+$content-width:   960px;
+$content-padding: 1.5rem;
+
+// ── Quarto grid override ─────────────────────────────────────
+$grid-body-width:    $content-width;
+$grid-sidebar-width: 0rem;
+$grid-margin-width:  0rem;
+
+// ── Typography ───────────────────────────────────────────────
+$font-family-sans-serif: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+$font-size-base:         0.9375rem;  // 15px
+$line-height-base:       1.8;
+
+// ── Colors ───────────────────────────────────────────────────
+$body-color:     #333;
+$link-color:     #0000EE;
+$headings-color: #000;
+$body-bg:        #fff;
+
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+// ── Base ─────────────────────────────────────────────────────
+body {
+  font-family: $font-family-sans-serif;
+  background: $body-bg;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-sans-serif;
+  color: $headings-color;
+  font-weight: 700;
+}
+
+a {
+  color: $link-color;
+  text-decoration: underline;
+  &:visited { color: #551A8B; }
+  &:hover   { color: #0000CC; }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin: $content-padding 0;
+}
+
+// ── Navbar ───────────────────────────────────────────────────
+.navbar {
+  background-color: $body-bg !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+.navbar > .container-fluid,
+.navbar > .container {
+  max-width: $content-width !important;
+  margin: 0 auto !important;
+  padding: 0.8rem $content-padding;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+.navbar-brand {
+  font-family: $font-family-sans-serif !important;
+  font-weight: 900;
+  font-size: 1.45rem;
+  color: #000 !important;
+  letter-spacing: -0.02em;
+}
+.navbar-nav .nav-link {
+  font-family: $font-family-sans-serif !important;
+  color: #000 !important;
+  font-size: 0.88rem;
+  text-decoration: none;
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+    color: $link-color !important;
+  }
+}
+
+// ── Page layout ───────────────────────────────────────────────
+// Home (listing) page: page-layout: full → flex column, sidebar first
+#quarto-content.page-layout-full {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 0 $content-padding;
+}
+#quarto-margin-sidebar {
+  display: block !important;
+  width: 100% !important;
+  max-width: $content-width !important;
+  padding: 1rem $content-padding 0 !important;
+  position: static !important;
+  order: 0;
+}
+main.column-page-left,
+main#quarto-document-content {
+  width: 100% !important;
+  max-width: $content-width !important;
+  padding: 0 $content-padding !important;
+  order: 1;
+  box-sizing: border-box !important;
+}
+
+// Post page: page-layout: article → $grid-body-width handles width.
+// Content padding only.
+main.content {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 $content-padding !important;
+  box-sizing: border-box !important;
+}
+
+.quarto-listing {
+  margin-right: 0 !important;
+}
+
+// ── Category filter bar ───────────────────────────────────────
+.quarto-listing-category-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+.quarto-listing-category.category-default {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+.quarto-listing-category .category {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #555;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0.08rem 0.45rem;
+  cursor: pointer;
+  user-select: none;
+  &:hover, &.active {
+    border-color: #000;
+    color: #000;
+    background: #f5f5f5;
+  }
+}
+.quarto-category-count {
+  color: #aaa;
+  font-size: 0.7rem;
+}
+
+// ── Listing rows ─────────────────────────────────────────────
+div.quarto-post {
+  display: flex;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: 0.5rem;
+  padding: 0.28rem 0 0 !important;
+  border: none;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+
+  &::before {
+    content: "•";
+    color: #333;
+    font-size: 1rem;
+    flex-shrink: 0;
+    line-height: 1.8;
+    order: 1 !important;
+  }
+
+  .thumbnail, .listing-image { display: none !important; }
+  .listing-subtitle { display: none !important; }
+
+  .metadata {
+    order: 2 !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    flex-basis: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    a { text-decoration: none !important; color: inherit !important; }
+  }
+  .listing-date {
+    color: #999;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .body {
+    order: 3 !important;
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  h3.no-anchor.listing-title {
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    line-height: 1.8 !important;
+    flex-shrink: 1;
+    a {
+      color: #000 !important;
+      text-decoration: none !important;
+      &:hover { text-decoration: underline !important; }
+    }
+  }
+
+  .listing-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    flex-shrink: 0;
+    align-items: center;
+    margin-left: auto;
+  }
+  .listing-category {
+    font-size: 0.7rem;
+    color: #666;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0.02rem 0.3rem;
+    white-space: nowrap;
+    cursor: pointer;
+    line-height: 1.5;
+    &:hover { background: #e4e4e4; color: #333; }
+  }
+}
+
+// ── Pagination ───────────────────────────────────────────────
+.listing-pagination {
+  display: flex !important;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: $content-padding;
+  font-size: 0.85rem;
+
+  .page-item .page-link {
+    color: #000;
+    background: none;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    text-decoration: none;
+  }
+  .page-item.active .page-link { font-weight: 700; text-decoration: underline; }
+  .page-item.disabled .page-link { color: #ccc; }
+}
+
+.quarto-listing-filter { display: none !important; }
+
+// ── Post page ────────────────────────────────────────────────
+#title-block-header {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.quarto-title h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.quarto-title-meta { font-size: 0.82rem; color: #999; }
+
+// ── Common ───────────────────────────────────────────────────
+.card {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: none !important;
+}
+figure figcaption { display: none; }
+
+// ── Footer ───────────────────────────────────────────────────
+.nav-footer {
+  border-top: 1px solid #000 !important;
+  background: $body-bg !important;
+  font-size: 0.82rem;
+  color: #666;
+  padding: 1rem $content-padding;
+  max-width: $content-width !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+
+  a {
+    color: #333 !important;
+    text-decoration: none !important;
+    &:hover { text-decoration: underline !important; }
+  }
+}
+
+// ── Code ─────────────────────────────────────────────────────
+pre, code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+}
+pre {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+// ── Mobile ───────────────────────────────────────────────────
+@media (max-width: 720px) {
+  div.quarto-post .body { flex-wrap: wrap; }
+}

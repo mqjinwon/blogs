@@ -21,11 +21,6 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: [cosmo, custom.scss]
     toc: false
     include-after-body: listing-fix.html
-    grid:
-      body-width: 960px
-      sidebar-width: 0px
-      margin-width: 0px
