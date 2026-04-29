@@ -147,12 +147,6 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/mqjinwon"> <i class="bi bi-github" role="img">
@@ -336,14 +330,14 @@ No matching items
 // Fix Quarto 1.6 category filter bug:
 // data-categories is base64(urlencoded joined string), not comma-separated base64 values.
 (function () {
+  var categoryButtons;
+
   function fixCategoryFilter(categoryB64) {
     const categoryName = categoryB64 ? atob(categoryB64) : "";
 
-    const listingIds = Object.keys(window["quarto-listings"] || {});
-    for (const listingId of listingIds) {
-      const list = window["quarto-listings"][listingId];
-      if (!list) continue;
-
+    const listings = window["quarto-listings"] || {};
+    for (const listingId of Object.keys(listings)) {
+      const list = listings[listingId];
       if (!categoryName) {
         list.filter();
       } else {
@@ -358,15 +352,10 @@ No matching items
       }
     }
 
-    // Update active state on filter buttons
-    document.querySelectorAll(".quarto-listing-category .category.active")
-      .forEach(el => el.classList.remove("active"));
-    const target = document.querySelector(
-      `.quarto-listing-category .category[data-category='${categoryB64}']`
-    );
-    if (target) target.classList.add("active");
+    categoryButtons.forEach(function (el) {
+      el.classList.toggle("active", el.getAttribute("data-category") === categoryB64);
+    });
 
-    // Update URL hash
     const hash = categoryB64 ? "category=" + categoryB64 : "";
     window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
   }
@@ -374,18 +363,19 @@ No matching items
   window.addEventListener("load", function () {
     window.quartoListingCategory = fixCategoryFilter;
 
-    document.querySelectorAll(".quarto-listing-category .category").forEach(function(el) {
+    categoryButtons = document.querySelectorAll(".quarto-listing-category .category");
+    categoryButtons.forEach(function (el) {
       var cat = el.getAttribute("data-category");
-      el.onclick = function() { fixCategoryFilter(cat); };
+      el.onclick = function () { fixCategoryFilter(cat); };
     });
 
-    document.querySelectorAll(".quarto-listing-category-title").forEach(function(el) {
-      el.onclick = function() { fixCategoryFilter(""); };
+    document.querySelectorAll(".quarto-listing-category-title").forEach(function (el) {
+      el.onclick = function () { fixCategoryFilter(""); };
     });
 
     var hash = window.location.hash.slice(1);
-    if (hash && hash.indexOf("category=") === 0) {
-      var cat = hash.replace("category=", "");
+    if (hash.startsWith("category=")) {
+      var cat = hash.slice("category=".length);
       if (cat) fixCategoryFilter(cat);
     }
   });

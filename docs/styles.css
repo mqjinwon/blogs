@@ -31,16 +31,17 @@ hr {
 /* ── Navbar ── */
 .navbar {
   background-color: #fff !important;
-  border-bottom: 1px solid #000 !important;
+  border-bottom: none !important;
   box-shadow: none !important;
-  padding: 0.8rem 0;
+  padding: 0;
 }
 .navbar > .container-fluid,
 .navbar > .container {
   max-width: 960px !important;
   margin: 0 auto !important;
-  padding: 0 1.5rem;
+  padding: 0.8rem 1.5rem;
   width: 100%;
+  border-bottom: 1px solid #000;
 }
 .navbar-brand {
   font-family: 'Noto Sans KR', sans-serif !important;
@@ -75,7 +76,7 @@ hr {
   display: block !important;
   width: 100% !important;
   max-width: 960px !important;
-  padding: 1rem 0 0 0 !important;
+  padding: 1rem 1.5rem 0 1.5rem !important;
   position: static !important;
   order: 0;
 }
@@ -84,8 +85,9 @@ main.column-page-left,
 main#quarto-document-content {
   width: 100% !important;
   max-width: 960px !important;
-  padding: 0 !important;
+  padding: 0 1.5rem !important;
   order: 1;
+  box-sizing: border-box !important;
 }
 
 /* 포스트 페이지: quarto-container의 기본 padding을 제거하고
@@ -100,6 +102,11 @@ main.content {
   max-width: 960px !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box !important;
+}
+
+/* Quarto listing이 기본으로 margin-right을 추가하므로 제거 */
+.quarto-listing {
+  margin-right: 0 !important;
 }
 
 /* ── Category filter bar ── */
@@ -143,23 +150,16 @@ main.content {
 /* NOTE: NO !important on display so Quarto JS can hide non-matching items */
 div.quarto-post {
   display: flex;
-  align-items: baseline;
+  flex-direction: row !important;
+  align-items: baseline !important;
   gap: 0.5rem;
-  padding: 0.28rem 0;
+  padding: 0.28rem 0 0 0 !important;
   border: none;
   background: none;
   box-shadow: none;
   border-radius: 0;
 }
 
-/* Override Quarto's column layout + order defaults */
-div.quarto-post {
-  flex-direction: row !important;
-  align-items: baseline !important;
-  padding-bottom: 0 !important;
-}
-
-/* Bullet: far left via ::before */
 div.quarto-post::before {
   content: "•";
   color: #333;
@@ -199,14 +199,11 @@ div.quarto-post .body {
   min-width: 0;
 }
 
-/* Hide thumbnail */
 div.quarto-post .thumbnail,
-div.quarto-post .listing-image,
-div.quarto-post img {
+div.quarto-post .listing-image {
   display: none !important;
 }
 
-/* Title: left side */
 div.quarto-post h3.no-anchor.listing-title {
   margin: 0 !important;
   font-size: 0.95rem !important;
@@ -222,12 +219,10 @@ div.quarto-post h3.no-anchor.listing-title a:hover {
   text-decoration: underline !important;
 }
 
-/* Hide subtitle */
 div.quarto-post .listing-subtitle {
   display: none !important;
 }
 
-/* Categories: right side of body */
 div.quarto-post .listing-categories {
   display: flex;
   flex-wrap: wrap;
@@ -281,7 +276,6 @@ div.quarto-post .listing-category:hover {
 }
 
 /* ── Post page ── */
-/* Title block: constrain width, no banner */
 #title-block-header {
   border-bottom: 1px solid #000;
   padding-bottom: 1rem;
@@ -312,9 +306,7 @@ div.quarto-post .listing-category:hover {
 }
 
 /* ── Hide auto-generated image captions ── */
-figure.quarto-float figcaption,
-.quarto-float-fig figcaption,
-figure > figcaption {
+figure figcaption {
   display: none;
 }
 
