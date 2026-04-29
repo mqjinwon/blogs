@@ -3,107 +3,69 @@ title: "LiDAR 하드웨어 개요"
 author: "김진원"
 date: "2024-07-06"
 categories: [lidar, sensor]
-image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUbK059WsPhUyqiwZKiuppI5n98mJclFAzJFZEaHBR1nNUJkX5T9TJClpFZJENozLOtLM&usqp=CAU
-
-format: 
-  html:
-    code-fold: show   # Optional: Allows code blocks to be folded
-    code-overflow: wrap  # Prevents horizontal scrolling
-jupyter: python3
-
-toc: true  # Optional: Adds a table of contents
 ---
-
-라이다의 종류에 대해서 알아보자
 
 ## 라이다 개요
 
-![image-20240706125128213](assets/image-20240706125128213.png)
+![라이다 구성 요소](assets/image-20240706125128213.png)
 
-라이다는 기본적으로 Laser, Recevier, Processor로 구성되어 있다.
+라이다는 기본적으로 Laser, Receiver, Processor로 구성되어 있다.
 
-![image-20240706125215236](assets/image-20240706125215236.png)
+![TOF 원리](assets/image-20240706125215236.png)
 
-Laser에서 빛을 쏘고, 이 빛이 장애물에 반사가 되면, Receiver가 빛을 받는다. 이때 거리를 측정하기 위해, 빛의 속도와 시간을 이용한다. 이 기술을 TOF(Time of Flight) 라 부른다.
+Laser에서 빛을 쏘고, 장애물에 반사된 빛을 Receiver가 수신한다. 이때 빛의 속도와 왕복 시간을 이용해 거리를 계산하는데, 이 기술을 **TOF(Time of Flight)**라 부른다.
+
 $$
-c = speed\ of\ light \\
-d = t*c/2
+d = \frac{t \times c}{2}
 $$
 
+($c$: 빛의 속도, $t$: 왕복 시간)
 
-## 고려해야하는 사항 (Spec)
+## 주요 스펙
 
-**1. FOV (Field of View)**
+**FOV (Field of View)**
 
-![image-20240706130703528](assets/image-20240706130703528.png)
+![FOV 예시](assets/image-20240706130703528.png)
 
-- 어느정도의 영역을 커버할 수 있는 가를 말함
+센서가 커버할 수 있는 각도 범위. 수평/수직 FOV 모두 중요하다.
 
-**2. Range**
+**Range** — 최대 측정 가능 거리
 
-**3. Resolution**
+**Resolution** — 거리 분해능 (포인트 간 최소 간격)
 
-**4. accuary**
+**Accuracy** — 측정값의 오차 범위
 
+## 라이다의 종류
 
-## 라이다의 타입
+### 1. Spinning Type
 
-3D 라이다는 다양한 타입의 모델이 존재한다.
+![Spinning LiDAR](assets/image-20240706130805126.png)
 
-1. Spinning type
+수직으로 배열된 레이저 모듈을 모터로 회전시켜 3D 포인트클라우드를 취득하는 방식이다.
+거리가 멀어질수록 포인트 밀도가 낮아지며, 채널 수를 늘릴수록 캘리브레이션 비용이 기하급수적으로 증가한다.
 
-   ![image-20240706130805126](assets/image-20240706130805126.png)
+### 2. Hybrid Solid-State
 
-   - 위 그림과 같이 센서들이 수직으로 배열되어 있으며, 모터가 센서를 회전시켜가면서 값을 취득하는 방법이다.
+![Hybrid Solid-State LiDAR](assets/Peek%202024-07-06%2013-15.gif)
 
-   - 이는 수직으로 배열된 레이저 모듈이기에 거리가 증가함에 따라 point의 밀도는 점차적으로 줄어든다. 
+제한된 각도로 회전하는 두 개의 거울을 활용한다. 폴리곤 거울은 수평 스캔, 진동 거울은 수직 굴절을 담당한다.
+Spinning Type 대비 훨씬 높은 구동 주파수가 필요해 내구성에 취약하다.
 
-   - detection range와 resolution을 증가시키기 위한 한가지 방법은 transmit-receive 모듈을 추가하는 것이다.
+### 3. MEMS Module
 
-   - 센서의 수가 늘어날수록, calibration을 하기가 힘들어져 비용이 기하급수적으로 증가한다.
+MEMS 시스템의 고주파 진동 거울로 레이저 빔을 반사하는 방식이다.
+거울 크기에 한계가 있어 장거리 감지가 어렵고, 내구성 문제와 좁은 FOV가 단점이다.
 
-     
+### 4. Solid-State
 
-2. Hybrid solid-state LiDAR
+| ![Solid-State 칩](assets/image-20240706134355065.png) | ![비교](https://www.hesaitech.com/wp-content/uploads/2023/03/image-3-1024x697.png) |
+|:---:|:---:|
 
-   ![Peek 2024-07-06 13-15](assets/Peek 2024-07-06 13-15.gif)
+ASIC 기술로 수백 개의 레이저 모듈을 단일 칩에 통합한 방식이다.
+높은 거리 분해능과 정확도를 제공하며, 제조 단순화로 일관성이 높다.
 
-   - 제한된 각도로 회전하는 두개의 거울을 사용한다.
-   - 폴리곤 거울은 회전하며 레이저가 수평으로 스캔되도록 하고, 위아래로 흔들리는 거울을 레이저 빔을 수직으로 굴절시킨다.
-   - spinning type에 비해서 매우 높은 hz가 필요하다. 즉 잘 고장날 가능성이 높다.
+## Reference
 
-
-
-3. MEMS module LiDAR
-
-   ![test-product](https://preciseley.com/wp-content/uploads/2021/10/test-product.png)
-
-   1. MEMS 시스템을 통해 고주파로 회전하며 레이저 빔을 반사하는 방식임.
-   2. Recevier가 먼 거리의 물체를 감지하기 위해서는 충분한 빛을 받아야하기에 먼 거리의 값을 측정하기 어렵다.
-   3. 거울이 커질수록 고주파의 진동을 견디기 어렵다.
-   4. 내구성 문제가 있다.
-   5. 제한된 회전각도로 인해 FOV가 낮다.
-
-
-
-4. Solid-state LiDAR
-
-   | ![image-20240706134355065](assets/image-20240706134355065.png) | ![Things you need to know about LiDAR: solid-state and hybrid solid-state,  what's the difference?  HESAI](https://www.hesaitech.com/wp-content/uploads/2023/03/image-3-1024x697.png) |
-   | ------------------------------------------------------------ | ------------------------------------------------------------ |
-
-   - ASIC 기술을 통해 수백개의 레이저 모듈을 단일 칩에 통합시켜 만든 LiDAR이다.
-   - 이는 뛰어난 거리 측정 해상도와 정확성을 제공하며, 단순화된 제조를 통해 효율성과 일관성을 높인다.
-
-
-
-### Reference
-
-https://www.youtube.com/watch?v=3EehCU3csJQ&t=18s
-
-
-
-### Image credit
-
-[https://preciseley.com/product/mems-scanning-mirror/](https://preciseley.com/product/mems-scanning-mirror/)
-
-[https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/](https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/)
+- [YouTube - LiDAR 개요](https://www.youtube.com/watch?v=3EehCU3csJQ&t=18s)
+- [Preciseley - MEMS Scanning Mirror](https://preciseley.com/product/mems-scanning-mirror/)
+- [Hesai - Solid-state vs Hybrid Solid-state](https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/)

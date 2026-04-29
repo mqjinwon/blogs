@@ -90,16 +90,26 @@ main#quarto-document-content {
   box-sizing: border-box !important;
 }
 
-/* 포스트 페이지: quarto-container의 기본 padding을 제거하고
-   main.content가 960px 전체를 채우도록 */
+/* 포스트 페이지: Quarto grid가 sidebar/margin 컬럼용으로 남겨두는 공간을 제거.
+   main.content가 .page-columns 전체 폭(960px)을 차지하도록 강제. */
 .quarto-container.page-columns {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
+/* page-columns는 CSS grid로 구성됨. sidebar/margin이 0px이어도
+   grid-template-columns에 공간이 남을 수 있으므로 main을 전체 폭으로 설정 */
+.page-columns > main.content {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
 main.content {
   width: 100% !important;
-  max-width: 960px !important;
+  max-width: 100% !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box !important;
 }
@@ -294,7 +304,7 @@ div.quarto-post .listing-category:hover {
 #quarto-content:not(.page-layout-full) {
   max-width: 960px !important;
   margin: 0 auto !important;
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 /* ── Remove Bootstrap decorations ── */

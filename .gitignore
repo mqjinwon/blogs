@@ -1,1 +1,11 @@
 /.quarto/
+.omc/
+.playwright*/
+
+# Screenshots / design reference images
+*.png
+*.jpg
+*.jpeg
+*.gif
+!posts/**/assets/**
+!docs/**/assets/**

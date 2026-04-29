@@ -5,9 +5,6 @@ project:
 website:
   title: "jwkim.log"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
     right:
       - icon: github
         href: https://github.com/mqjinwon

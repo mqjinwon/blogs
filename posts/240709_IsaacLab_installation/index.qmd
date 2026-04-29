@@ -4,136 +4,91 @@ author: "김진원"
 date: "2024-07-09"
 categories: [nvidia, isaaclab, robotics, rl]
 image: https://isaac-sim.github.io/IsaacLab/_images/isaaclab.jpg
-
-format: 
-  html:
-    code-fold: show   # Optional: Allows code blocks to be folded
-    code-overflow: wrap  # Prevents horizontal scrolling
-jupyter: python3
-
-toc: true  # Optional: Adds a table of contents
 ---
 
-IssacLab 설치하기
-
----
-
-
-
-## OS & 사전 설치 사항
+## 사전 요구사항
 
 - Ubuntu 22.04
-- [ROS 2 humble](https://docs.ros.org/en/humble/Installation.html)
+- [ROS 2 Humble](https://docs.ros.org/en/humble/Installation.html)
 - Isaac Sim 4.0 이상
-- [miniconda](https://docs.anaconda.com/miniconda/) or [anaconda](https://www.anaconda.com/)
+- [Miniconda](https://docs.anaconda.com/miniconda/) 또는 [Anaconda](https://www.anaconda.com/)
 
+추가 패키지:
 
-
-### 추가적으로 설치할 패키지
-
-```
+```bash
 sudo apt install cmake build-essential
 ```
 
+## 설치 절차
 
-
-## IsaacLab 설치하기
-
-
-
-먼저 isaaclab 설치 파일을 github에서 다운 받는다.
+### 1. 저장소 클론
 
 ```bash
 git clone git@github.com:isaac-sim/IsaacLab.git
+cd IsaacLab
 ```
 
-
-
-isaaclab.sh를 사용해서 다양한 명령어를 수행할 수 있다.
+`isaaclab.sh`로 대부분의 작업을 수행할 수 있다.
 
 ```bash
 ./isaaclab.sh --help
+```
 
-usage: isaaclab.sh [-h] [-i] [-f] [-p] [-s] [-t] [-o] [-v] [-d] [-c] -- Utility to manage Isaac Lab.
+```
+usage: isaaclab.sh [-h] [-i] [-f] [-p] [-s] [-t] [-o] [-v] [-d] [-c]
 
 optional arguments:
    -h, --help           Display the help content.
-   -i, --install [LIB]  Install the extensions inside Isaac Lab and learning frameworks (rl-games, rsl-rl, sb3, skrl) as extra dependencies. Default is 'all'.
-   -f, --format         Run pre-commit to format the code and check lints.
-   -p, --python         Run the python executable provided by Isaac Sim or virtual environment (if active).
-   -s, --sim            Run the simulator executable (isaac-sim.sh) provided by Isaac Sim.
+   -i, --install [LIB]  Install extensions and learning frameworks (rl-games, rsl-rl, sb3, skrl). Default: 'all'.
+   -f, --format         Run pre-commit to format code and check lints.
+   -p, --python         Run the python executable from Isaac Sim or virtual env.
+   -s, --sim            Run the simulator executable (isaac-sim.sh).
    -t, --test           Run all python unittest tests.
-   -o, --docker         Run the docker container helper script (docker/container.sh).
-   -v, --vscode         Generate the VSCode settings file from template.
-   -d, --docs           Build the documentation from source using sphinx.
-   -c, --conda [NAME]   Create the conda environment for Isaac Lab. Default name is 'isaaclab'.
+   -o, --docker         Run the docker container helper script.
+   -v, --vscode         Generate VSCode settings from template.
+   -d, --docs           Build documentation using sphinx.
+   -c, --conda [NAME]   Create the conda environment. Default name: 'isaaclab'.
 ```
 
+### 2. Isaac Sim 심볼릭 링크 설정
 
-
-### IsaacSim symbolic link 만들기
-
-설치된 Isaac Lab 디렉터리에 설치된 IsaacSim을 연결해주는 `_isaac_sim` 심볼릭 링크를 설정한다. 이렇게 하면 Isaac Sim에 있는 파이썬 모듈과 확장 프로그램을 쉽게 찾을 수 있다.
+설치된 Isaac Sim 경로를 `_isaac_sim`으로 연결한다.
 
 ```bash
-# enter the cloned repository
-cd IsaacLab
-# create a symbolic link
 ln -s path_to_isaac_sim _isaac_sim
-# For example: ln -s /home/nvidia/.local/share/ov/pkg/isaac-sim-4.0.0 _isaac_sim
+# 예시: ln -s /home/nvidia/.local/share/ov/pkg/isaac-sim-4.0.0 _isaac_sim
 ```
 
-
-
-### Conda 환경 만들기 (optional)
-
-기본적으로 가상환경을 사용하기를 권장한다. 이를 설정하기 위해서는 아래의 명령어를 사용하면 된다.
+### 3. Conda 환경 생성 (권장)
 
 ```bash
-# Option 1: Default name for conda environment is 'isaaclab'
-./isaaclab.sh --conda  # or "./isaaclab.sh -c"
-# Option 2: Custom name for conda environment
-./isaaclab.sh --conda my_env  # or "./isaaclab.sh -c my_env"
+# 기본 이름 'isaaclab'
+./isaaclab.sh --conda
+
+# 이름 지정
+./isaaclab.sh --conda my_env
 ```
-
-
-
-환경을 활성화 하기 위해서는 `conda activate`를 활용한다.
 
 ```bash
-conda activate isaaclab  # or "conda activate my_env"
+conda activate isaaclab
 ```
 
+### 4. IsaacLab 설치
 
-
-만약 로컬에서 진행하고 싶다면 아래와 같이 설치를 하면 된다. **(권장하지 않음)**
+::: {.callout-warning}
+반드시 conda 환경에 진입한 상태에서 설치해야 한다.
+:::
 
 ```bash
-./isaaclab.sh -p
+./isaaclab.sh --install
 ```
 
-
-
-### IsaacLab 설치하기
-
-이제 설치명령어만 남았다. **이때, 주의할 것은 conda 환경에 진입한 채로 설치해야한다는 것이다!** 아래 명령을 통해 IsaacLab을 설치할 수 있다.
+특정 프레임워크만 설치하려면 인자를 지정한다. 유효한 값: `rl_games`, `rsl_rl`, `sb3`, `skrl`, `robomimic`, `none`.
 
 ```bash
-./isaaclab.sh --install # or "./isaaclab.sh -i"
+./isaaclab.sh --install rl_games
 ```
-
-
-
-위와 같이 설치할 경우 모든 학습 framework를 다 다운 받는다. 만약 일부의 프레임워크만 사용하고 싶다면 (e.g. rl_games) 인자로 필요한 라이브러리를 작성해주면 된다.
-
-```bash
-./isaaclab.sh --install rl_games  # or "./isaaclab.sh -i rl_games"
-```
-
-유효한 인자는 `rl_games`, `rsl_rl`, `sb3`, `skrl`, `robomimic`, `none`이 있다.
-
-
 
 ## Reference
 
-[https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html](https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html)
+- [IsaacLab 공식 설치 가이드](https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html)
