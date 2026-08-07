@@ -1,8 +1,13 @@
 project:
   type: website
   output-dir: docs
-  # search: false still emits search.json; drop the unused index
+  pre-render: "python3 scripts/collect_posts.py"
   post-render: "rm -f docs/search.json"
+  resources:
+    - data/posts.json
+    - papers.js
+    - graph.js
+    - post-meta.js
 
 website:
   title: "jwkim.log"
@@ -10,6 +15,8 @@ website:
   search: false
   navbar:
     right:
+      - text: Papers
+        href: papers.qmd
       - icon: github
         href: https://github.com/mqjinwon
 

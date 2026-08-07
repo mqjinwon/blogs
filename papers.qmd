@@ -1,0 +1,8 @@
+---
+title: "Papers"
+page-layout: article
+include-after-body: papers-include.html
+---
+
+::: {#papers-root}
+:::

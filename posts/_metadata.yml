@@ -7,3 +7,6 @@ page-layout: article
 
 # Enable banner style title blocks
 title-block-banner: false
+
+# Backlink-style graph at end of every post
+include-after-body: ../post-graph-include.html

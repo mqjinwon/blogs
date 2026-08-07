@@ -3,6 +3,7 @@ title: "StrideSim 프로젝트 시작"
 author: "김진원"
 date: "2024-08-26"
 categories: [nvidia, isaaclab, robotics, rl]
+related: [240709_IsaacLab_installation]
 ---
 
 Auturbo 5기 시뮬레이터 제작 프로젝트 **StrideSim**의 소개 및 설치 가이드.

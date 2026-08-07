@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4b9168e7bc8d638a0eacbc1674a976d0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0bad6575438fc248e0f12678db9ca29c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -114,6 +114,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../papers.html"> 
+<span class="menu-text">Papers</span></a>
+  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/mqjinwon"> <i class="bi bi-github" role="img">
 </i> 
@@ -261,60 +265,137 @@ Warning
 
 </main> <!-- /main -->
 <script>
-// Fix Quarto 1.6 category filter bug:
-// data-categories is base64(urlencoded joined string), not comma-separated base64 values.
+// Multi-select AND category filter for the home listing.
+// data-categories is base64(urlencoded joined string) in Quarto 1.6+.
 (function () {
-  var categoryButtons;
+  var selected = {}; // decoded category name -> true
+  var categoryButtons = [];
 
-  function fixCategoryFilter(categoryB64) {
-    const categoryName = categoryB64 ? atob(categoryB64) : "";
-
-    const listings = window["quarto-listings"] || {};
-    for (const listingId of Object.keys(listings)) {
-      const list = listings[listingId];
-      if (!categoryName) {
-        list.filter();
-      } else {
-        list.filter(function (item) {
-          const vals = item.values();
-          if (vals.categories != null) {
-            const decoded = decodeURIComponent(atob(vals.categories));
-            return decoded.split(",").includes(categoryName);
-          }
-          return false;
-        });
-      }
+  function decodeCats(b64) {
+    if (!b64) return [];
+    try {
+      return decodeURIComponent(atob(b64)).split(",").filter(Boolean);
+    } catch (e) {
+      return [];
     }
-
-    categoryButtons.forEach(function (el) {
-      el.classList.toggle("active", el.getAttribute("data-category") === categoryB64);
-    });
-
-    const hash = categoryB64 ? "category=" + categoryB64 : "";
-    window.history.pushState(null, null, hash ? "#" + hash : window.location.pathname);
   }
 
-  window.addEventListener("load", function () {
-    window.quartoListingCategory = fixCategoryFilter;
+  function selectedNames() {
+    return Object.keys(selected).filter(function (k) {
+      return selected[k];
+    });
+  }
 
-    categoryButtons = document.querySelectorAll(".quarto-listing-category .category");
+  function applyFilter() {
+    var names = selectedNames();
+    var listings = window["quarto-listings"] || {};
+    Object.keys(listings).forEach(function (listingId) {
+      var list = listings[listingId];
+      if (!names.length) {
+        list.filter();
+        return;
+      }
+      list.filter(function (item) {
+        var vals = item.values();
+        if (vals.categories == null) return false;
+        var cats = decodeCats(vals.categories);
+        for (var i = 0; i < names.length; i++) {
+          if (cats.indexOf(names[i]) < 0) return false;
+        }
+        return true;
+      });
+    });
+    paintActive();
+  }
+
+  function paintActive() {
+    var names = selectedNames();
+    var nameSet = {};
+    names.forEach(function (n) {
+      nameSet[n] = true;
+    });
+
+    categoryButtons.forEach(function (el) {
+      var b64 = el.getAttribute("data-category") || "";
+      if (!b64) {
+        // "All"
+        el.classList.toggle("active", names.length === 0);
+        return;
+      }
+      var name = "";
+      try {
+        name = atob(b64);
+      } catch (e) {
+        name = b64;
+      }
+      el.classList.toggle("active", !!nameSet[name]);
+    });
+
+    // also highlight row chips
+    document.querySelectorAll(".listing-category").forEach(function (el) {
+      var t = (el.textContent || "").trim();
+      el.classList.toggle("active", !!nameSet[t]);
+    });
+  }
+
+  function toggleName(name) {
+    if (!name) {
+      selected = {};
+    } else if (selected[name]) {
+      delete selected[name];
+    } else {
+      selected[name] = true;
+    }
+    applyFilter();
+  }
+
+  function toggleB64(b64) {
+    if (!b64) {
+      toggleName("");
+      return;
+    }
+    var name = "";
+    try {
+      name = atob(b64);
+    } catch (e) {
+      name = b64;
+    }
+    toggleName(name);
+  }
+
+  // Replace Quarto single-select handler
+  window.quartoListingCategory = function (categoryB64) {
+    toggleB64(categoryB64 || "");
+  };
+
+  window.addEventListener("load", function () {
+    categoryButtons = Array.prototype.slice.call(
+      document.querySelectorAll(".quarto-listing-category .category")
+    );
     categoryButtons.forEach(function (el) {
       var cat = el.getAttribute("data-category");
-      el.onclick = function () { fixCategoryFilter(cat); };
+      el.onclick = function (e) {
+        e.preventDefault();
+        toggleB64(cat);
+      };
     });
 
     document.querySelectorAll(".quarto-listing-category-title").forEach(function (el) {
-      el.onclick = function () { fixCategoryFilter(""); };
+      el.onclick = function (e) {
+        e.preventDefault();
+        toggleName("");
+      };
     });
 
-    var hash = window.location.hash.slice(1);
-    if (hash.startsWith("category=")) {
-      var cat = hash.slice("category=".length);
-      if (cat) fixCategoryFilter(cat);
-    }
+    // row chips already call window.quartoListingCategory
+    applyFilter();
   });
 })();
 </script>
+<div id="post-meta-root" class="post-meta-root"></div>
+<div id="post-graph-root" class="post-graph-root"></div>
+<script src="../../post-meta.js"></script>
+<script src="../../graph.js"></script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

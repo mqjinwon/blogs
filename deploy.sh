@@ -8,6 +8,7 @@ quarto render
 
 echo "Staging changes..."
 git add _quarto.yml index.qmd custom.scss listing-fix.html deploy.sh .gitignore README.md
+git add papers.qmd papers.js papers-include.html post-graph-include.html graph.js post-meta.js scripts/ data/
 git add posts/ docs/
 
 # Drop deleted tracked files (e.g. removed about/profile)
