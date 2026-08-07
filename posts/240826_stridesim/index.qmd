@@ -3,7 +3,6 @@ title: "StrideSim 프로젝트 시작"
 author: "김진원"
 date: "2024-08-26"
 categories: [nvidia, isaaclab, robotics, rl]
-image: https://isaac-sim.github.io/IsaacLab/_images/isaaclab.jpg
 ---
 
 Auturbo 5기 시뮬레이터 제작 프로젝트 **StrideSim**의 소개 및 설치 가이드.
@@ -24,7 +23,7 @@ IsaacLab 기반의 사족보행 로봇 강화학습 시뮬레이터 프로젝트
 
 ### 2. IsaacLab 설치
 
-[IsaacLab 설치 포스트](https://mqjinwon.github.io/posts/240709_IsaacLab_installation/)를 참고하되, branch는 `v1.0.0`으로 지정한다.
+[IsaacLab 설치 포스트](../240709_IsaacLab_installation/)를 참고하되, branch는 `v1.0.0`으로 지정한다.
 
 ```bash
 git checkout v1.0.0

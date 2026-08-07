@@ -3,7 +3,6 @@ title: "IsaacLab의 configclass decorator 역할"
 author: "김진원"
 date: "2024-08-20"
 categories: [nvidia, isaaclab, robotics, rl, python]
-image: https://isaac-sim.github.io/IsaacLab/_images/isaaclab.jpg
 ---
 
 ## TL;DR

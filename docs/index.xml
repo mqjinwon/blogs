@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>jwkim.log</title>
+<link>https://mqjinwon.github.io/blogs/</link>
+<atom:link href="https://mqjinwon.github.io/blogs/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Sun, 25 Aug 2024 15:00:00 GMT</lastBuildDate>
+<item>
+  <title>StrideSim 프로젝트 시작</title>
+  <dc:creator>김진원 </dc:creator>
+  <link>https://mqjinwon.github.io/blogs/posts/240826_stridesim/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Auturbo 5기 시뮬레이터 제작 프로젝트 <strong>StrideSim</strong>의 소개 및 설치 가이드.</p>
+<hr>
+<section id="stridesim이란" class="level2">
+<h2 class="anchored" data-anchor-id="stridesim이란">StrideSim이란?</h2>
+<p>IsaacLab 기반의 사족보행 로봇 강화학습 시뮬레이터 프로젝트다. (내용 추가 예정)</p>
+<hr>
+</section>
+<section id="설치-방법" class="level2">
+<h2 class="anchored" data-anchor-id="설치-방법">설치 방법</h2>
+<section id="isaac-sim-4.0.0-설치" class="level3">
+<h3 class="anchored" data-anchor-id="isaac-sim-4.0.0-설치">1. Isaac Sim 4.0.0 설치</h3>
+<p><a href="https://isaac-sim.github.io/IsaacLab/source/setup/installation/pip_installation.html#installing-isaac-sim">공식 pip 설치 가이드</a>를 따라 진행한다.</p>
+</section>
+<section id="isaaclab-설치" class="level3">
+<h3 class="anchored" data-anchor-id="isaaclab-설치">2. IsaacLab 설치</h3>
+<p><a href="../240709_IsaacLab_installation/">IsaacLab 설치 포스트</a>를 참고하되, branch는 <code>v1.0.0</code>으로 지정한다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> checkout v1.0.0</span></code></pre></div></div>
+</section>
+<section id="stridesim-설치" class="level3">
+<h3 class="anchored" data-anchor-id="stridesim-설치">3. StrideSim 설치</h3>
+<p><strong>저장소 클론</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> clone https://github.com/AuTURBO/StrideSim.git</span></code></pre></div></div>
+<p><strong>IsaacLab conda 환경 활성화</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate isaaclab</span></code></pre></div></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>반드시 IsaacLab conda 환경 내에서 설치해야 한다. VSCode를 사용한다면 Python 인터프리터를 <code>isaaclab</code>으로 설정하는 것을 권장한다.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240826_stridesim/assets/image-20240826230509665.png" class="img-fluid figure-img"></p>
+<figcaption>VSCode Python 인터프리터 설정</figcaption>
+</figure>
+</div>
+<p><strong>Extension 설치</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> StrideSim/exts/StrideSim</span>
+<span id="cb4-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">python</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-m</span> pip install <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-e</span> .</span></code></pre></div></div>
+<p><strong>환경 변수 설정</strong> (<code>~/.bashrc</code>에 추가)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">export</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">ISAACSIM_PATH</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${HOME}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/.local/share/ov/pkg/isaac-sim-4.0.0"</span></span>
+<span id="cb5-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> ISAACSIM_PYTHON=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${ISAACSIM_PATH}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/python.sh"</span></span>
+<span id="cb5-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">alias</span> ISAACSIM=<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">${ISAACSIM_PATH}</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/isaac-sim.sh"</span></span></code></pre></div></div>
+<p><strong>Extension 경로 등록</strong></p>
+<p>Isaac Sim 실행 후 다음 순서로 진행한다.</p>
+<ol type="1">
+<li><p>Window → Extensions</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240826_stridesim/assets/image-20240826231027906.png" class="img-fluid figure-img"></p>
+<figcaption>Extensions 메뉴</figcaption>
+</figure>
+</div></li>
+<li><p>삼지창(⋮) → Settings</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240826_stridesim/assets/image-20240826231052410.png" class="img-fluid figure-img"></p>
+<figcaption>Settings 진입</figcaption>
+</figure>
+</div></li>
+<li><p>Extension Search Paths에 <code>StrideSim/exts</code> 경로 추가</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240826_stridesim/assets/image-20240826231156289.png" class="img-fluid figure-img"></p>
+<figcaption>Search Paths 추가</figcaption>
+</figure>
+</div></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://isaac-sim.github.io/IsaacLab/">IsaacLab 공식 문서</a></li>
+<li><a href="https://github.com/AuTURBO/StrideSim">StrideSim GitHub</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>nvidia</category>
+  <category>isaaclab</category>
+  <category>robotics</category>
+  <category>rl</category>
+  <guid>https://mqjinwon.github.io/blogs/posts/240826_stridesim/</guid>
+  <pubDate>Sun, 25 Aug 2024 15:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>IsaacLab의 configclass decorator 역할</title>
+  <dc:creator>김진원 </dc:creator>
+  <link>https://mqjinwon.github.io/blogs/posts/240820_IsaacLab_configclass/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<p><code>@configclass</code>는 Python <code>@dataclass</code>의 부족한 부분을 채워주는 IsaacLab의 decorator다.</p>
+<ul>
+<li>타입 annotation 없이도 필드 선언 가능</li>
+<li>mutable default 값을 <code>field(default_factory=...)</code> 없이 자동 처리</li>
+<li><code>to_dict</code>, <code>from_dict</code>, <code>copy</code>, <code>replace</code> 등 유틸리티 메서드 자동 추가</li>
+</ul>
+<hr>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>IsaacLab의 <a href="https://github.com/isaac-sim/IsaacLabExtensionTemplate">IsaacLabExtensionTemplate</a>을 분석하다가 <code>@configclass</code> decorator를 발견했다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240820_IsaacLab_configclass/assets/image-20240820212004490.png" class="img-fluid figure-img"></p>
+<figcaption>configclass 사용 예시</figcaption>
+</figure>
+</div>
+<p><code>@dataclass</code>를 확장한 것이라는 설명을 보고, 두 decorator를 직접 비교해보기로 했다.</p>
+<hr>
+</section>
+<section id="decorator란" class="level2">
+<h2 class="anchored" data-anchor-id="decorator란">Decorator란?</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>어떤 함수를 받아 특정 역할을 수행하고, 이를 다시 함수의 형태로 반환하는 함수</p>
+</div>
+</div>
+<p>Python decorator는 다른 함수를 입력으로 받아, 원래 코드를 수정하지 않고 동작을 확장하거나 변경한다.</p>
+<p><strong>기본 구조</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> my_decorator(func):</span>
+<span id="cb1-2">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> wrapper(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs):</span>
+<span id="cb1-3">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 함수 호출 전 처리</span></span>
+<span id="cb1-4">        result <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> func(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs)</span>
+<span id="cb1-5">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 함수 호출 후 처리</span></span>
+<span id="cb1-6">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> result</span>
+<span id="cb1-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> wrapper</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@my_decorator</span></span>
+<span id="cb1-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> my_function():</span>
+<span id="cb1-11">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hello, World!"</span>)</span></code></pre></div></div>
+<p><strong>예시 — 로깅 decorator</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> log_decorator(func):</span>
+<span id="cb2-2">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> wrapper(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs):</span>
+<span id="cb2-3">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Calling </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>func<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">__name__</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb2-4">        result <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> func(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs)</span>
+<span id="cb2-5">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>func<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">__name__</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> returned </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>result<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb2-6">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> result</span>
+<span id="cb2-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> wrapper</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@log_decorator</span></span>
+<span id="cb2-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> add(a, b):</span>
+<span id="cb2-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> b</span>
+<span id="cb2-12"></span>
+<span id="cb2-13">add(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb2-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calling add</span></span>
+<span id="cb2-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># add returned 7</span></span></code></pre></div></div>
+<p><strong>예시 — 실행 시간 측정</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> time</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> timing_decorator(func):</span>
+<span id="cb3-4">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> wrapper(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs):</span>
+<span id="cb3-5">        start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> time.time()</span>
+<span id="cb3-6">        result <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> func(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>args, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs)</span>
+<span id="cb3-7">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>func<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">__name__</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> took </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>time<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>time() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> start<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.4f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">s"</span>)</span>
+<span id="cb3-8">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> result</span>
+<span id="cb3-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> wrapper</span>
+<span id="cb3-10"></span>
+<span id="cb3-11"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@timing_decorator</span></span>
+<span id="cb3-12"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> compute_square(n):</span>
+<span id="cb3-13">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> n</span>
+<span id="cb3-14"></span>
+<span id="cb3-15">compute_square(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb3-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># compute_square took 0.0000s</span></span></code></pre></div></div>
+<hr>
+</section>
+<section id="dataclass-기능" class="level2">
+<h2 class="anchored" data-anchor-id="dataclass-기능"><span class="citation" data-cites="dataclass">@dataclass</span> 기능</h2>
+<p>Python 3.7에서 도입된 <code>@dataclass</code>는 <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code> 등의 메서드를 자동으로 생성해 보일러플레이트 코드를 줄여준다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> dataclasses <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> dataclass</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@dataclass</span></span>
+<span id="cb4-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> Person:</span>
+<span id="cb4-5">    name: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span></span>
+<span id="cb4-6">    age: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span></span>
+<span id="cb4-7">    job: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Unknown"</span></span>
+<span id="cb4-8"></span>
+<span id="cb4-9">p <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Person(name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Alice"</span>, age<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>)</span>
+<span id="cb4-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(p)       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Person(name='Alice', age=30, job='Unknown')</span></span>
+<span id="cb4-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(p <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> Person(name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Alice"</span>, age<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>))  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># True</span></span></code></pre></div></div>
+<p><code>order=True</code>, <code>frozen=True</code> 옵션으로 정렬 비교와 불변성도 지원한다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> dataclasses <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> dataclass, field</span>
+<span id="cb5-2"></span>
+<span id="cb5-3"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@dataclass</span>(order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, frozen<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span>
+<span id="cb5-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> Product:</span>
+<span id="cb5-5">    name: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> field(compare<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb5-6">    price: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span></span>
+<span id="cb5-7">    quantity: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> field(default<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, compare<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9">p1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Product(name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Laptop"</span>, price<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">999.99</span>)</span>
+<span id="cb5-10">p2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Product(name<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tablet"</span>, price<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">499.99</span>)</span>
+<span id="cb5-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(p1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> p2)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># True</span></span></code></pre></div></div>
+<p><strong>dataclass의 한계</strong></p>
+<ol type="1">
+<li>모든 필드에 타입 annotation이 필수</li>
+<li>mutable 기본값(list, dict 등) 사용 시 <code>field(default_factory=...)</code>를 명시적으로 써야 함</li>
+</ol>
+<hr>
+</section>
+<section id="configclass-분석" class="level2">
+<h2 class="anchored" data-anchor-id="configclass-분석"><span class="citation" data-cites="configclass">@configclass</span> 분석</h2>
+<p>IsaacLab 소스코드의 <code>configclass</code> 구현을 보면 다음과 같다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> configclass(cls, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs):</span>
+<span id="cb6-2">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 타입 annotation 자동 추가</span></span>
+<span id="cb6-3">    _add_annotation_types(cls)</span>
+<span id="cb6-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># mutable 기본값 자동 처리</span></span>
+<span id="cb6-5">    _process_mutable_types(cls)</span>
+<span id="cb6-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># __post_init__ 확장</span></span>
+<span id="cb6-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">hasattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"__post_init__"</span>):</span>
+<span id="cb6-8">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"__post_init__"</span>, _combined_function(cls.__post_init__, _custom_post_init))</span>
+<span id="cb6-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb6-10">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"__post_init__"</span>, _custom_post_init)</span>
+<span id="cb6-11">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 유틸리티 메서드 추가</span></span>
+<span id="cb6-12">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"to_dict"</span>, _class_to_dict)</span>
+<span id="cb6-13">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"from_dict"</span>, _update_class_from_dict)</span>
+<span id="cb6-14">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"replace"</span>, _replace_class_with_kwargs)</span>
+<span id="cb6-15">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">setattr</span>(cls, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"copy"</span>, _copy_class)</span>
+<span id="cb6-16">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># dataclass로 래핑</span></span>
+<span id="cb6-17">    cls <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> dataclass(cls, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>kwargs)</span>
+<span id="cb6-18">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> cls</span></code></pre></div></div>
+<p><strong>사용 예시</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> dataclasses <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> MISSING</span>
+<span id="cb7-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> omni.isaac.lab.utils.configclass <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> configclass</span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@configclass</span></span>
+<span id="cb7-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> ViewerCfg:</span>
+<span id="cb7-6">    eye: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">list</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>]       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># annotation 없어도 OK</span></span>
+<span id="cb7-7">    lookat: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">list</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>]    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># mutable default 자동 처리</span></span>
+<span id="cb7-8"></span>
+<span id="cb7-9"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@configclass</span></span>
+<span id="cb7-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> EnvCfg:</span>
+<span id="cb7-11">    num_envs: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> MISSING</span>
+<span id="cb7-12">    episode_length: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span></span>
+<span id="cb7-13">    viewer: ViewerCfg <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ViewerCfg()</span>
+<span id="cb7-14"></span>
+<span id="cb7-15">env_cfg <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> EnvCfg(num_envs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>)</span>
+<span id="cb7-16"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(env_cfg.to_dict())</span>
+<span id="cb7-17"></span>
+<span id="cb7-18">env_cfg_copy <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> env_cfg.copy()</span>
+<span id="cb7-19">env_cfg_copy <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> env_cfg_copy.replace(num_envs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32</span>)</span></code></pre></div></div>
+<p><code>to_dict</code> / <code>from_dict</code>로 dictionary 변환, <code>copy</code>로 깊은 복사, <code>replace</code>로 값을 바꾼 복사본 생성이 가능하다.</p>
+<hr>
+</section>
+<section id="dataclass-vs-configclass-비교" class="level2">
+<h2 class="anchored" data-anchor-id="dataclass-vs-configclass-비교">dataclass vs configclass 비교</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature</th>
+<th style="text-align: center;"><code>@dataclass</code></th>
+<th style="text-align: center;"><code>@configclass</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">목적</td>
+<td style="text-align: center;">범용 데이터 저장</td>
+<td style="text-align: center;">설정 관리 특화</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">타입 annotation</td>
+<td style="text-align: center;">필수</td>
+<td style="text-align: center;">자동 처리</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Mutable default</td>
+<td style="text-align: center;"><code>field(default_factory=...)</code> 필요</td>
+<td style="text-align: center;">자동 처리</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">유틸리티 메서드</td>
+<td style="text-align: center;"><code>__init__</code>, <code>__repr__</code>, <code>__eq__</code></td>
+<td style="text-align: center;">+ <code>to_dict</code>, <code>from_dict</code>, <code>copy</code>, <code>replace</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://nachwon.github.io/decorator/">Python 데코레이터 (Decorator) 설명</a></li>
+<li><a href="https://github.com/isaac-sim/IsaacLab">IsaacLab configclass 소스</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>nvidia</category>
+  <category>isaaclab</category>
+  <category>robotics</category>
+  <category>rl</category>
+  <category>python</category>
+  <guid>https://mqjinwon.github.io/blogs/posts/240820_IsaacLab_configclass/</guid>
+  <pubDate>Mon, 19 Aug 2024 15:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>IsaacLab 설치하기</title>
+  <dc:creator>김진원 </dc:creator>
+  <link>https://mqjinwon.github.io/blogs/posts/240709_IsaacLab_installation/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="사전-요구사항" class="level2">
+<h2 class="anchored" data-anchor-id="사전-요구사항">사전 요구사항</h2>
+<ul>
+<li>Ubuntu 22.04</li>
+<li><a href="https://docs.ros.org/en/humble/Installation.html">ROS 2 Humble</a></li>
+<li>Isaac Sim 4.0 이상</li>
+<li><a href="https://docs.anaconda.com/miniconda/">Miniconda</a> 또는 <a href="https://www.anaconda.com/">Anaconda</a></li>
+</ul>
+<p>추가 패키지:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sudo</span> apt install cmake build-essential</span></code></pre></div></div>
+</section>
+<section id="설치-절차" class="level2">
+<h2 class="anchored" data-anchor-id="설치-절차">설치 절차</h2>
+<section id="저장소-클론" class="level3">
+<h3 class="anchored" data-anchor-id="저장소-클론">1. 저장소 클론</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">git</span> clone git@github.com:isaac-sim/IsaacLab.git</span>
+<span id="cb2-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">cd</span> IsaacLab</span></code></pre></div></div>
+<p><code>isaaclab.sh</code>로 대부분의 작업을 수행할 수 있다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./isaaclab.sh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--help</span></span></code></pre></div></div>
+<pre><code>usage: isaaclab.sh [-h] [-i] [-f] [-p] [-s] [-t] [-o] [-v] [-d] [-c]
+
+optional arguments:
+   -h, --help           Display the help content.
+   -i, --install [LIB]  Install extensions and learning frameworks (rl-games, rsl-rl, sb3, skrl). Default: 'all'.
+   -f, --format         Run pre-commit to format code and check lints.
+   -p, --python         Run the python executable from Isaac Sim or virtual env.
+   -s, --sim            Run the simulator executable (isaac-sim.sh).
+   -t, --test           Run all python unittest tests.
+   -o, --docker         Run the docker container helper script.
+   -v, --vscode         Generate VSCode settings from template.
+   -d, --docs           Build documentation using sphinx.
+   -c, --conda [NAME]   Create the conda environment. Default name: 'isaaclab'.</code></pre>
+</section>
+<section id="isaac-sim-심볼릭-링크-설정" class="level3">
+<h3 class="anchored" data-anchor-id="isaac-sim-심볼릭-링크-설정">2. Isaac Sim 심볼릭 링크 설정</h3>
+<p>설치된 Isaac Sim 경로를 <code>_isaac_sim</code>으로 연결한다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ln</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">-s</span> path_to_isaac_sim _isaac_sim</span>
+<span id="cb5-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 예시: ln -s /home/nvidia/.local/share/ov/pkg/isaac-sim-4.0.0 _isaac_sim</span></span></code></pre></div></div>
+</section>
+<section id="conda-환경-생성-권장" class="level3">
+<h3 class="anchored" data-anchor-id="conda-환경-생성-권장">3. Conda 환경 생성 (권장)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 기본 이름 'isaaclab'</span></span>
+<span id="cb6-2"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./isaaclab.sh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--conda</span></span>
+<span id="cb6-3"></span>
+<span id="cb6-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 이름 지정</span></span>
+<span id="cb6-5"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./isaaclab.sh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--conda</span> my_env</span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">conda</span> activate isaaclab</span></code></pre></div></div>
+</section>
+<section id="isaaclab-설치" class="level3">
+<h3 class="anchored" data-anchor-id="isaaclab-설치">4. IsaacLab 설치</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>반드시 conda 환경에 진입한 상태에서 설치해야 한다.</p>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./isaaclab.sh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--install</span></span></code></pre></div></div>
+<p>특정 프레임워크만 설치하려면 인자를 지정한다. 유효한 값: <code>rl_games</code>, <code>rsl_rl</code>, <code>sb3</code>, <code>skrl</code>, <code>robomimic</code>, <code>none</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">./isaaclab.sh</span> <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">--install</span> rl_games</span></code></pre></div></div>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://isaac-sim.github.io/IsaacLab/source/setup/installation/index.html">IsaacLab 공식 설치 가이드</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>nvidia</category>
+  <category>isaaclab</category>
+  <category>robotics</category>
+  <category>rl</category>
+  <guid>https://mqjinwon.github.io/blogs/posts/240709_IsaacLab_installation/</guid>
+  <pubDate>Mon, 08 Jul 2024 15:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>LiDAR 하드웨어 개요</title>
+  <dc:creator>김진원 </dc:creator>
+  <link>https://mqjinwon.github.io/blogs/posts/240706_lidar/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="라이다-개요" class="level2">
+<h2 class="anchored" data-anchor-id="라이다-개요">라이다 개요</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/image-20240706125128213.png" class="img-fluid figure-img"></p>
+<figcaption>라이다 구성 요소</figcaption>
+</figure>
+</div>
+<p>라이다는 기본적으로 Laser, Receiver, Processor로 구성되어 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/image-20240706125215236.png" class="img-fluid figure-img"></p>
+<figcaption>TOF 원리</figcaption>
+</figure>
+</div>
+<p>Laser에서 빛을 쏘고, 장애물에 반사된 빛을 Receiver가 수신한다. 이때 빛의 속도와 왕복 시간을 이용해 거리를 계산하는데, 이 기술을 <strong>TOF(Time of Flight)</strong>라 부른다.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ad%20=%20%5Cfrac%7Bt%20%5Ctimes%20c%7D%7B2%7D%0A"></p>
+<p>(<img src="https://latex.codecogs.com/png.latex?c">: 빛의 속도, <img src="https://latex.codecogs.com/png.latex?t">: 왕복 시간)</p>
+</section>
+<section id="주요-스펙" class="level2">
+<h2 class="anchored" data-anchor-id="주요-스펙">주요 스펙</h2>
+<p><strong>FOV (Field of View)</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/image-20240706130703528.png" class="img-fluid figure-img"></p>
+<figcaption>FOV 예시</figcaption>
+</figure>
+</div>
+<p>센서가 커버할 수 있는 각도 범위. 수평/수직 FOV 모두 중요하다.</p>
+<p><strong>Range</strong> — 최대 측정 가능 거리</p>
+<p><strong>Resolution</strong> — 거리 분해능 (포인트 간 최소 간격)</p>
+<p><strong>Accuracy</strong> — 측정값의 오차 범위</p>
+</section>
+<section id="라이다의-종류" class="level2">
+<h2 class="anchored" data-anchor-id="라이다의-종류">라이다의 종류</h2>
+<section id="spinning-type" class="level3">
+<h3 class="anchored" data-anchor-id="spinning-type">1. Spinning Type</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/image-20240706130805126.png" class="img-fluid figure-img"></p>
+<figcaption>Spinning LiDAR</figcaption>
+</figure>
+</div>
+<p>수직으로 배열된 레이저 모듈을 모터로 회전시켜 3D 포인트클라우드를 취득하는 방식이다. 거리가 멀어질수록 포인트 밀도가 낮아지며, 채널 수를 늘릴수록 캘리브레이션 비용이 기하급수적으로 증가한다.</p>
+</section>
+<section id="hybrid-solid-state" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-solid-state">2. Hybrid Solid-State</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/Peek 2024-07-06 13-15.gif" class="img-fluid figure-img"></p>
+<figcaption>Hybrid Solid-State LiDAR</figcaption>
+</figure>
+</div>
+<p>제한된 각도로 회전하는 두 개의 거울을 활용한다. 폴리곤 거울은 수평 스캔, 진동 거울은 수직 굴절을 담당한다. Spinning Type 대비 훨씬 높은 구동 주파수가 필요해 내구성에 취약하다.</p>
+</section>
+<section id="mems-module" class="level3">
+<h3 class="anchored" data-anchor-id="mems-module">3. MEMS Module</h3>
+<p>MEMS 시스템의 고주파 진동 거울로 레이저 빔을 반사하는 방식이다. 거울 크기에 한계가 있어 장거리 감지가 어렵고, 내구성 문제와 좁은 FOV가 단점이다.</p>
+</section>
+<section id="solid-state" class="level3">
+<h3 class="anchored" data-anchor-id="solid-state">4. Solid-State</h3>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="https://mqjinwon.github.io/blogs/posts/240706_lidar/assets/image-20240706134355065.png" class="img-fluid" alt="Solid-State 칩"></th>
+<th style="text-align: center;"><img src="https://www.hesaitech.com/wp-content/uploads/2023/03/image-3-1024x697.png" class="img-fluid" alt="비교"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>ASIC 기술로 수백 개의 레이저 모듈을 단일 칩에 통합한 방식이다. 높은 거리 분해능과 정확도를 제공하며, 제조 단순화로 일관성이 높다.</p>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=3EehCU3csJQ&amp;t=18s">YouTube - LiDAR 개요</a></li>
+<li><a href="https://preciseley.com/product/mems-scanning-mirror/">Preciseley - MEMS Scanning Mirror</a></li>
+<li><a href="https://www.hesaitech.com/things-you-need-to-know-about-lidar-solid-state-and-hybrid-solid-state-whats-the-difference/">Hesai - Solid-state vs Hybrid Solid-state</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>lidar</category>
+  <category>sensor</category>
+  <guid>https://mqjinwon.github.io/blogs/posts/240706_lidar/</guid>
+  <pubDate>Fri, 05 Jul 2024 15:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Quarto 블로그 시작하기</title>
+  <dc:creator>김진원 </dc:creator>
+  <link>https://mqjinwon.github.io/blogs/posts/240608_quarto_intro/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>정연님이 추천해주신 Quarto 블로그 템플릿을 기반으로 나만의 기술 블로그를 시작했다.</p>
+<p>앞으로 로보틱스 연구 과정에서 배운 것들, 삽질한 것들을 꾸준히 기록해나갈 예정이다.</p>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference">Reference</h2>
+<ul>
+<li><a href="https://curieuxjy.github.io/posts/code/2024-01-07-quarto-blog.html">curieuxjy - Quarto 블로그 만들기</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>blog</category>
+  <guid>https://mqjinwon.github.io/blogs/posts/240608_quarto_intro/</guid>
+  <pubDate>Fri, 07 Jun 2024 15:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

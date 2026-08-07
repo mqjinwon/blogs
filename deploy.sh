@@ -1,13 +1,27 @@
 #!/bin/bash
+set -euo pipefail
 
-# Render the Quarto project
+cd "$(dirname "$0")"
+
+echo "Rendering Quarto site..."
 quarto render
 
-# Add all changes to the git staging area
-git add --all
+echo "Staging changes..."
+git add _quarto.yml index.qmd custom.scss listing-fix.html deploy.sh .gitignore README.md
+git add posts/ docs/
 
-# Commit the changes with the current date as the commit message
-git commit -am "$(date '+%Y-%m-%d')"
+# Drop deleted tracked files (e.g. removed about/profile)
+git add -u
 
-# Push the changes to the remote repository
+if git diff --cached --quiet; then
+  echo "Nothing to commit."
+  exit 0
+fi
+
+msg="${1:-deploy: $(date '+%Y-%m-%d %H:%M')}"
+git commit -m "$msg"
+
+echo "Pushing..."
 git push
+
+echo "Done."

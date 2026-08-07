@@ -3,7 +3,6 @@ title: "IsaacLab 설치하기"
 author: "김진원"
 date: "2024-07-09"
 categories: [nvidia, isaaclab, robotics, rl]
-image: https://isaac-sim.github.io/IsaacLab/_images/isaaclab.jpg
 ---
 
 ## 사전 요구사항

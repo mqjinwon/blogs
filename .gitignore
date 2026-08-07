@@ -2,10 +2,19 @@
 .omc/
 .playwright*/
 
-# Screenshots / design reference images
+# Quarto default output dir (this project uses docs/ for GH Pages)
+_site/
+
+# Screenshots / design reference images (post assets + docs copies allowed)
 *.png
 *.jpg
 *.jpeg
 *.gif
 !posts/**/assets/**
 !docs/**/assets/**
+
+# OS / editor
+.DS_Store
+*.swp
+
+**/*.quarto_ipynb

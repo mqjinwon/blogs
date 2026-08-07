@@ -1,9 +1,13 @@
 project:
   type: website
   output-dir: docs
+  # search: false still emits search.json; drop the unused index
+  post-render: "rm -f docs/search.json"
 
 website:
   title: "jwkim.log"
+  site-url: https://mqjinwon.github.io/blogs
+  search: false
   navbar:
     right:
       - icon: github
